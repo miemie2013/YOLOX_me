@@ -1,0 +1,39 @@
+
+
+
+git config --global user.name "miemie133"
+git config --global user.email "12656772+miemie133@user.noreply.gitee.com"
+
+git clone https://gitee.com/miemie133/yolox_me.git
+
+
+git add .
+
+git commit -m "f"
+
+git remote add origin https://gitee.com/miemie133/yolox_me.git
+
+git push -u origin master
+
+
+
+git add .
+git commit -m "f"
+git push -u origin master
+
+
+
+wget https://github.com/Megvii-BaseDetection/YOLOX/releases/download/0.1.1rc0/yolox_s.pth
+
+----------------------- 预测 -----------------------
+python tools/demo.py image -f exps/default/yolox_s.py -c yolox_s.pth --path assets/000000000019.jpg --conf 0.15 --tsize 640 --save_result --device gpu
+
+
+
+
+
+
+
+
+
+
