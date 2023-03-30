@@ -11,6 +11,11 @@ import cv2
 
 import torch
 
+# add python path of this repo to sys.path
+import sys
+parent_path = os.path.abspath(os.path.join(__file__, *(['..'] * 2)))
+sys.path.insert(0, parent_path)
+
 from yolox.data.data_augment import ValTransform
 from yolox.data.datasets import COCO_CLASSES
 from yolox.exp import get_exp

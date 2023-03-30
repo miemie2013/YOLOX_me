@@ -12,6 +12,11 @@ import torch
 import torch.backends.cudnn as cudnn
 from torch.nn.parallel import DistributedDataParallel as DDP
 
+# add python path of this repo to sys.path
+import sys
+parent_path = os.path.abspath(os.path.join(__file__, *(['..'] * 2)))
+sys.path.insert(0, parent_path)
+
 from yolox.core import launch
 from yolox.exp import get_exp
 from yolox.utils import (

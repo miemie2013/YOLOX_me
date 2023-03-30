@@ -25,12 +25,22 @@ git push -u origin master
 
 wget https://github.com/Megvii-BaseDetection/YOLOX/releases/download/0.1.1rc0/yolox_s.pth
 
+
+pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+pip install torch==1.10.1+cu102 torchvision==0.11.2+cu102 torchaudio==0.10.1 -f https://download.pytorch.org/whl/torch_stable.html
+
+
 ----------------------- 预测 -----------------------
 python tools/demo.py image -f exps/default/yolox_s.py -c yolox_s.pth --path assets/000000000019.jpg --conf 0.15 --tsize 640 --save_result --device gpu
 
 
 
+----------------------- 训练 -----------------------
+python tools/train.py -f exps/default/yolox_s.py -d 1 -b 8 -eb 4 --fp16 -o
 
+
+python tools/train.py -f exps/default/yolox_s.py -d 1 -b 8 --fp16 -o
 
 
 

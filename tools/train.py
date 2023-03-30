@@ -10,6 +10,12 @@ from loguru import logger
 import torch
 import torch.backends.cudnn as cudnn
 
+# add python path of this repo to sys.path
+import os
+import sys
+parent_path = os.path.abspath(os.path.join(__file__, *(['..'] * 2)))
+sys.path.insert(0, parent_path)
+
 from yolox.core import launch
 from yolox.exp import Exp, check_exp_value, get_exp
 from yolox.utils import configure_module, configure_nccl, configure_omp, get_num_devices
