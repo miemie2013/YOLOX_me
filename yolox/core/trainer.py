@@ -4,6 +4,7 @@
 import datetime
 import os
 import time
+import numpy as np
 from loguru import logger
 
 import torch
@@ -189,7 +190,19 @@ class Trainer:
                 raise ValueError("logger must be either 'tensorboard' or 'wandb'")
 
         logger.info("Training start...")
-        logger.info("\n{}".format(model))
+        # logger.info("\n{}".format(model))
+        trainable_params = 0
+        nontrainable_params = 0
+        for name_, param_ in model.named_parameters():
+            mul = np.prod(param_.shape)
+            if param_.requires_grad is True:
+                trainable_params += mul
+            else:
+                nontrainable_params += mul
+        total_params = trainable_params + nontrainable_params
+        logger.info('Total params: %s' % format(total_params, ","))
+        logger.info('Trainable params: %s' % format(trainable_params, ","))
+        logger.info('Non-trainable params: %s' % format(nontrainable_params, ","))
 
     def after_train(self):
         logger.info(
