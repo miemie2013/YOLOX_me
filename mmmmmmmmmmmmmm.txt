@@ -37,11 +37,10 @@ python tools/demo.py image -f exps/default/yolox_s.py -c yolox_s.pth --path asse
 
 
 ----------------------- 训练 -----------------------
-python tools/train.py -f exps/default/yolox_s.py -d 1 -b 8 -eb 4 --fp16 -o
+nohup xxx     > ppyolo.log 2>&1 &
 
-
-python tools/train.py -f exps/default/yolox_s.py -d 1 -b 8 --fp16 -o
-
+export CUDA_VISIBLE_DEVICES=7,8
+nohup python tools/train.py -f exps/default/yolox_tiny_coco_baseline.py -d 2 -b 64 --fp16     > yolox_tiny_coco_baseline.log 2>&1 &
 
 
 

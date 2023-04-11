@@ -45,6 +45,8 @@ class Exp(BaseExp):
         self.val_ann = "instances_val2017.json"
         # name of annotation file for testing
         self.test_ann = "instances_test2017.json"
+        self.train_image_folder = "train2017"
+        self.val_image_folder = "val2017"
 
         # --------------- transform config ----------------- #
         # prob of applying mosaic aug
@@ -142,6 +144,7 @@ class Exp(BaseExp):
         return COCODataset(
             data_dir=self.data_dir,
             json_file=self.train_ann,
+            name=self.train_image_folder,
             img_size=self.input_size,
             preproc=TrainTransform(
                 max_labels=50,
@@ -304,7 +307,7 @@ class Exp(BaseExp):
         return COCODataset(
             data_dir=self.data_dir,
             json_file=self.val_ann if not testdev else self.test_ann,
-            name="val2017" if not testdev else "test2017",
+            name=self.val_image_folder if not testdev else "test2017",
             img_size=self.test_size,
             preproc=ValTransform(legacy=legacy),
         )
