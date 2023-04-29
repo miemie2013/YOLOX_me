@@ -1,0 +1,845 @@
+2023-04-29 22:43:42.352 | INFO     | yolox.core.trainer:before_train:131 - args: Namespace(experiment_name='yolox_s_voc2012', name=None, dist_backend='nccl', dist_url=None, batch_size=24, devices=2, exp_file='exps/default/yolox_s_voc2012.py', resume=False, ckpt='yolox_s.pth', start_epoch=None, num_machines=1, machine_rank=0, fp16=False, cache=None, occupy=False, logger='tensorboard', opts=[])
+2023-04-29 22:43:42.355 | INFO     | yolox.core.trainer:before_train:132 - exp value:
+╒════════════════════╤═══════════════════════════════╕
+│ keys               │ values                        │
+╞════════════════════╪═══════════════════════════════╡
+│ seed               │ None                          │
+├────────────────────┼───────────────────────────────┤
+│ output_dir         │ './YOLOX_outputs'             │
+├────────────────────┼───────────────────────────────┤
+│ print_interval     │ 20                            │
+├────────────────────┼───────────────────────────────┤
+│ eval_interval      │ 2                             │
+├────────────────────┼───────────────────────────────┤
+│ dataset            │ None                          │
+├────────────────────┼───────────────────────────────┤
+│ num_classes        │ 20                            │
+├────────────────────┼───────────────────────────────┤
+│ depth              │ 0.33                          │
+├────────────────────┼───────────────────────────────┤
+│ width              │ 0.5                           │
+├────────────────────┼───────────────────────────────┤
+│ act                │ 'silu'                        │
+├────────────────────┼───────────────────────────────┤
+│ data_num_workers   │ 4                             │
+├────────────────────┼───────────────────────────────┤
+│ input_size         │ (640, 640)                    │
+├────────────────────┼───────────────────────────────┤
+│ multiscale_range   │ 5                             │
+├────────────────────┼───────────────────────────────┤
+│ data_dir           │ '../VOCdevkit/VOC2012'        │
+├────────────────────┼───────────────────────────────┤
+│ ann_folder         │ 'annotations2'                │
+├────────────────────┼───────────────────────────────┤
+│ train_ann          │ 'voc2012_train.json'          │
+├────────────────────┼───────────────────────────────┤
+│ val_ann            │ 'voc2012_val.json'            │
+├────────────────────┼───────────────────────────────┤
+│ test_ann           │ 'instances_test2017.json'     │
+├────────────────────┼───────────────────────────────┤
+│ train_image_folder │ 'JPEGImages'                  │
+├────────────────────┼───────────────────────────────┤
+│ val_image_folder   │ 'JPEGImages'                  │
+├────────────────────┼───────────────────────────────┤
+│ mosaic_prob        │ 1.0                           │
+├────────────────────┼───────────────────────────────┤
+│ mixup_prob         │ 1.0                           │
+├────────────────────┼───────────────────────────────┤
+│ hsv_prob           │ 1.0                           │
+├────────────────────┼───────────────────────────────┤
+│ flip_prob          │ 0.5                           │
+├────────────────────┼───────────────────────────────┤
+│ degrees            │ 10.0                          │
+├────────────────────┼───────────────────────────────┤
+│ translate          │ 0.1                           │
+├────────────────────┼───────────────────────────────┤
+│ mosaic_scale       │ (0.1, 2)                      │
+├────────────────────┼───────────────────────────────┤
+│ enable_mixup       │ True                          │
+├────────────────────┼───────────────────────────────┤
+│ mixup_scale        │ (0.5, 1.5)                    │
+├────────────────────┼───────────────────────────────┤
+│ shear              │ 2.0                           │
+├────────────────────┼───────────────────────────────┤
+│ warmup_epochs      │ 1                             │
+├────────────────────┼───────────────────────────────┤
+│ max_epoch          │ 16                            │
+├────────────────────┼───────────────────────────────┤
+│ warmup_lr          │ 0                             │
+├────────────────────┼───────────────────────────────┤
+│ min_lr_ratio       │ 0.05                          │
+├────────────────────┼───────────────────────────────┤
+│ basic_lr_per_img   │ 0.00015625                    │
+├────────────────────┼───────────────────────────────┤
+│ scheduler          │ 'yoloxwarmcos'                │
+├────────────────────┼───────────────────────────────┤
+│ no_aug_epochs      │ 5                             │
+├────────────────────┼───────────────────────────────┤
+│ ema                │ True                          │
+├────────────────────┼───────────────────────────────┤
+│ weight_decay       │ 0.0005                        │
+├────────────────────┼───────────────────────────────┤
+│ momentum           │ 0.9                           │
+├────────────────────┼───────────────────────────────┤
+│ save_history_ckpt  │ True                          │
+├────────────────────┼───────────────────────────────┤
+│ exp_name           │ 'yolox_s_voc2012'             │
+├────────────────────┼───────────────────────────────┤
+│ test_size          │ (640, 640)                    │
+├────────────────────┼───────────────────────────────┤
+│ test_conf          │ 0.01                          │
+├────────────────────┼───────────────────────────────┤
+│ nmsthre            │ 0.65                          │
+├────────────────────┼───────────────────────────────┤
+│ cls_names          │ 'class_names/voc_classes.txt' │
+╘════════════════════╧═══════════════════════════════╛
+2023-04-29 22:43:42.569 | INFO     | yolox.core.trainer:before_train:137 - Model Summary: Params: 8.95M, Gflops: 26.80
+2023-04-29 22:43:42.588 | INFO     | yolox.core.trainer:resume_train:326 - loading checkpoint for fine tuning
+2023-04-29 22:43:42.728 | WARNING  | yolox.utils.checkpoint:load_ckpt:24 - Shape of head.cls_preds.0.weight in checkpoint is torch.Size([80, 128, 1, 1]), while shape of head.cls_preds.0.weight in model is torch.Size([20, 128, 1, 1]).
+2023-04-29 22:43:42.729 | WARNING  | yolox.utils.checkpoint:load_ckpt:24 - Shape of head.cls_preds.0.bias in checkpoint is torch.Size([80]), while shape of head.cls_preds.0.bias in model is torch.Size([20]).
+2023-04-29 22:43:42.729 | WARNING  | yolox.utils.checkpoint:load_ckpt:24 - Shape of head.cls_preds.1.weight in checkpoint is torch.Size([80, 128, 1, 1]), while shape of head.cls_preds.1.weight in model is torch.Size([20, 128, 1, 1]).
+2023-04-29 22:43:42.730 | WARNING  | yolox.utils.checkpoint:load_ckpt:24 - Shape of head.cls_preds.1.bias in checkpoint is torch.Size([80]), while shape of head.cls_preds.1.bias in model is torch.Size([20]).
+2023-04-29 22:43:42.730 | WARNING  | yolox.utils.checkpoint:load_ckpt:24 - Shape of head.cls_preds.2.weight in checkpoint is torch.Size([80, 128, 1, 1]), while shape of head.cls_preds.2.weight in model is torch.Size([20, 128, 1, 1]).
+2023-04-29 22:43:42.730 | WARNING  | yolox.utils.checkpoint:load_ckpt:24 - Shape of head.cls_preds.2.bias in checkpoint is torch.Size([80]), while shape of head.cls_preds.2.bias in model is torch.Size([20]).
+2023-04-29 22:43:42.751 | INFO     | yolox.data.datasets.coco:__init__:65 - loading annotations into memory...
+2023-04-29 22:43:42.860 | INFO     | yolox.data.datasets.coco:__init__:65 - Done (t=0.11s)
+2023-04-29 22:43:42.860 | INFO     | pycocotools.coco:__init__:86 - creating index...
+2023-04-29 22:43:42.866 | INFO     | pycocotools.coco:__init__:86 - index created!
+2023-04-29 22:43:43.314 | INFO     | yolox.core.trainer:before_train:156 - init prefetcher, this might take one minute or less...
+2023-04-29 22:43:50.070 | INFO     | yolox.data.datasets.coco:__init__:65 - loading annotations into memory...
+2023-04-29 22:43:50.237 | INFO     | yolox.data.datasets.coco:__init__:65 - Done (t=0.17s)
+2023-04-29 22:43:50.237 | INFO     | pycocotools.coco:__init__:86 - creating index...
+2023-04-29 22:43:50.248 | INFO     | pycocotools.coco:__init__:86 - index created!
+2023-04-29 22:43:51.018 | INFO     | yolox.core.trainer:before_train:192 - Training start...
+2023-04-29 22:43:51.022 | INFO     | yolox.core.trainer:before_train:203 - Total params: 8,945,035
+2023-04-29 22:43:51.022 | INFO     | yolox.core.trainer:before_train:204 - Trainable params: 8,945,035
+2023-04-29 22:43:51.022 | INFO     | yolox.core.trainer:before_train:205 - Non-trainable params: 0
+2023-04-29 22:43:51.023 | INFO     | yolox.core.trainer:before_epoch:216 - ---> start train epoch1
+2023-04-29 22:43:57.247 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 1/16, iter: 20/239, gpu mem: 7293Mb, mem: 19.8Gb, iter_time: 0.311s, data_time: 0.002s, total_loss: 10.2, iou_loss: 2.1, l1_loss: 0.0, conf_loss: 4.2, cls_loss: 3.9, lr: 0.000026, size: 576, ETA: 0:19:41
+2023-04-29 22:44:02.153 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 1/16, iter: 40/239, gpu mem: 8211Mb, mem: 19.9Gb, iter_time: 0.245s, data_time: 0.003s, total_loss: 7.5, iou_loss: 2.0, l1_loss: 0.0, conf_loss: 3.5, cls_loss: 2.1, lr: 0.000105, size: 736, ETA: 0:17:30
+2023-04-29 22:44:06.368 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 1/16, iter: 60/239, gpu mem: 8211Mb, mem: 19.7Gb, iter_time: 0.210s, data_time: 0.018s, total_loss: 6.3, iou_loss: 2.0, l1_loss: 0.0, conf_loss: 2.6, cls_loss: 1.6, lr: 0.000236, size: 576, ETA: 0:16:00
+2023-04-29 22:44:10.481 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 1/16, iter: 80/239, gpu mem: 8529Mb, mem: 19.8Gb, iter_time: 0.205s, data_time: 0.002s, total_loss: 5.5, iou_loss: 1.8, l1_loss: 0.0, conf_loss: 2.5, cls_loss: 1.2, lr: 0.000420, size: 768, ETA: 0:15:08
+2023-04-29 22:44:13.856 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 1/16, iter: 100/239, gpu mem: 8529Mb, mem: 19.8Gb, iter_time: 0.167s, data_time: 0.017s, total_loss: 6.3, iou_loss: 2.0, l1_loss: 0.0, conf_loss: 2.7, cls_loss: 1.6, lr: 0.000657, size: 480, ETA: 0:14:07
+2023-04-29 22:44:17.491 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 1/16, iter: 120/239, gpu mem: 8529Mb, mem: 19.8Gb, iter_time: 0.181s, data_time: 0.036s, total_loss: 5.2, iou_loss: 1.9, l1_loss: 0.0, conf_loss: 2.3, cls_loss: 1.0, lr: 0.000945, size: 640, ETA: 0:13:33
+2023-04-29 22:44:21.079 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 1/16, iter: 140/239, gpu mem: 8529Mb, mem: 19.8Gb, iter_time: 0.179s, data_time: 0.040s, total_loss: 6.1, iou_loss: 2.0, l1_loss: 0.0, conf_loss: 2.8, cls_loss: 1.4, lr: 0.001287, size: 512, ETA: 0:13:07
+2023-04-29 22:44:25.586 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 1/16, iter: 160/239, gpu mem: 8529Mb, mem: 19.7Gb, iter_time: 0.225s, data_time: 0.037s, total_loss: 6.5, iou_loss: 2.0, l1_loss: 0.0, conf_loss: 3.2, cls_loss: 1.2, lr: 0.001681, size: 704, ETA: 0:13:08
+2023-04-29 22:44:28.885 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 1/16, iter: 180/239, gpu mem: 8529Mb, mem: 19.8Gb, iter_time: 0.164s, data_time: 0.009s, total_loss: 6.3, iou_loss: 2.0, l1_loss: 0.0, conf_loss: 2.9, cls_loss: 1.5, lr: 0.002127, size: 704, ETA: 0:12:43
+2023-04-29 22:44:35.854 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 1/16, iter: 200/239, gpu mem: 9044Mb, mem: 19.7Gb, iter_time: 0.348s, data_time: 0.041s, total_loss: 6.5, iou_loss: 2.2, l1_loss: 0.0, conf_loss: 2.7, cls_loss: 1.7, lr: 0.002626, size: 800, ETA: 0:13:29
+2023-04-29 22:44:40.363 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 1/16, iter: 220/239, gpu mem: 9044Mb, mem: 19.8Gb, iter_time: 0.225s, data_time: 0.030s, total_loss: 5.9, iou_loss: 2.1, l1_loss: 0.0, conf_loss: 2.5, cls_loss: 1.3, lr: 0.003177, size: 480, ETA: 0:13:25
+2023-04-29 22:44:44.105 | INFO     | yolox.core.trainer:save_ckpt:371 - Save weights to ./YOLOX_outputs/yolox_s_voc2012
+2023-04-29 22:44:44.277 | INFO     | yolox.core.trainer:before_epoch:216 - ---> start train epoch2
+2023-04-29 22:44:47.860 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 2/16, iter: 20/239, gpu mem: 9044Mb, mem: 19.8Gb, iter_time: 0.179s, data_time: 0.031s, total_loss: 6.8, iou_loss: 2.2, l1_loss: 0.0, conf_loss: 3.1, cls_loss: 1.5, lr: 0.003749, size: 512, ETA: 0:12:57
+2023-04-29 22:44:52.387 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 2/16, iter: 40/239, gpu mem: 9044Mb, mem: 19.8Gb, iter_time: 0.226s, data_time: 0.004s, total_loss: 7.3, iou_loss: 2.3, l1_loss: 0.0, conf_loss: 3.2, cls_loss: 1.8, lr: 0.003748, size: 736, ETA: 0:12:55
+2023-04-29 22:44:55.963 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 2/16, iter: 60/239, gpu mem: 9044Mb, mem: 19.8Gb, iter_time: 0.178s, data_time: 0.004s, total_loss: 7.3, iou_loss: 2.4, l1_loss: 0.0, conf_loss: 3.2, cls_loss: 1.7, lr: 0.003744, size: 736, ETA: 0:12:41
+2023-04-29 22:44:59.702 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 2/16, iter: 80/239, gpu mem: 9044Mb, mem: 19.8Gb, iter_time: 0.186s, data_time: 0.058s, total_loss: 7.3, iou_loss: 2.3, l1_loss: 0.0, conf_loss: 3.1, cls_loss: 1.9, lr: 0.003740, size: 640, ETA: 0:12:30
+2023-04-29 22:45:03.649 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 2/16, iter: 100/239, gpu mem: 9044Mb, mem: 19.9Gb, iter_time: 0.197s, data_time: 0.077s, total_loss: 7.4, iou_loss: 2.5, l1_loss: 0.0, conf_loss: 3.4, cls_loss: 1.5, lr: 0.003735, size: 576, ETA: 0:12:22
+2023-04-29 22:45:07.541 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 2/16, iter: 120/239, gpu mem: 9044Mb, mem: 19.7Gb, iter_time: 0.193s, data_time: 0.074s, total_loss: 7.6, iou_loss: 2.4, l1_loss: 0.0, conf_loss: 3.4, cls_loss: 1.9, lr: 0.003728, size: 480, ETA: 0:12:14
+2023-04-29 22:45:11.400 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 2/16, iter: 140/239, gpu mem: 9044Mb, mem: 19.7Gb, iter_time: 0.192s, data_time: 0.048s, total_loss: 7.0, iou_loss: 2.3, l1_loss: 0.0, conf_loss: 3.2, cls_loss: 1.5, lr: 0.003720, size: 800, ETA: 0:12:06
+2023-04-29 22:45:15.188 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 2/16, iter: 160/239, gpu mem: 9044Mb, mem: 19.8Gb, iter_time: 0.188s, data_time: 0.055s, total_loss: 6.5, iou_loss: 2.0, l1_loss: 0.0, conf_loss: 3.0, cls_loss: 1.6, lr: 0.003711, size: 544, ETA: 0:11:58
+2023-04-29 22:45:19.022 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 2/16, iter: 180/239, gpu mem: 9044Mb, mem: 19.8Gb, iter_time: 0.191s, data_time: 0.070s, total_loss: 7.0, iou_loss: 2.5, l1_loss: 0.0, conf_loss: 3.0, cls_loss: 1.5, lr: 0.003700, size: 608, ETA: 0:11:51
+2023-04-29 22:45:22.816 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 2/16, iter: 200/239, gpu mem: 9044Mb, mem: 19.8Gb, iter_time: 0.188s, data_time: 0.027s, total_loss: 7.0, iou_loss: 2.3, l1_loss: 0.0, conf_loss: 3.2, cls_loss: 1.6, lr: 0.003689, size: 768, ETA: 0:11:43
+2023-04-29 22:45:26.580 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 2/16, iter: 220/239, gpu mem: 9044Mb, mem: 19.8Gb, iter_time: 0.188s, data_time: 0.047s, total_loss: 6.8, iou_loss: 2.3, l1_loss: 0.0, conf_loss: 2.9, cls_loss: 1.6, lr: 0.003676, size: 544, ETA: 0:11:36
+2023-04-29 22:45:30.064 | INFO     | yolox.core.trainer:save_ckpt:371 - Save weights to ./YOLOX_outputs/yolox_s_voc2012
+2023-04-29 22:45:54.856 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:259 - Evaluate in main process...
+2023-04-29 22:45:56.833 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:292 - Loading and preparing results...
+2023-04-29 22:45:57.988 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:292 - DONE (t=1.15s)
+2023-04-29 22:45:57.988 | INFO     | pycocotools.coco:loadRes:366 - creating index...
+2023-04-29 22:45:58.060 | INFO     | pycocotools.coco:loadRes:366 - index created!
+2023-04-29 22:45:58.063 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:302 - Running per image evaluation...
+2023-04-29 22:45:58.064 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:302 - Evaluate annotation type *bbox*
+2023-04-29 22:46:07.570 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:302 - DONE (t=9.51s).
+2023-04-29 22:46:07.571 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:303 - Accumulating evaluation results...
+2023-04-29 22:46:10.373 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:303 - DONE (t=2.80s).
+2023-04-29 22:46:10.684 | INFO     | yolox.core.trainer:evaluate_and_save_model:361 -
+Average forward time: 2.14 ms, Average NMS time: 1.10 ms, Average inference time: 3.25 ms
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.187
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.381
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.159
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.069
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.158
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.213
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.214
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.348
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.367
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.197
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.325
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.377
+per class AP:
+| class       | AP     | class       | AP     | class   | AP     |
+|:------------|:-------|:------------|:-------|:--------|:-------|
+| aeroplane   | 24.250 | bicycle     | 22.897 | bird    | 15.144 |
+| boat        | 9.589  | bottle      | 16.998 | bus     | 31.475 |
+| car         | 28.494 | cat         | 17.570 | chair   | 13.654 |
+| cow         | 7.335  | diningtable | 16.277 | dog     | 14.061 |
+| horse       | 21.218 | motorbike   | 14.637 | person  | 30.865 |
+| pottedplant | 12.194 | sheep       | 18.044 | sofa    | 7.925  |
+| train       | 22.959 | tvmonitor   | 29.051 |         |        |
+per class AR:
+| class       | AR     | class       | AR     | class   | AR     |
+|:------------|:-------|:------------|:-------|:--------|:-------|
+| aeroplane   | 47.913 | bicycle     | 50.079 | bird    | 36.296 |
+| boat        | 23.544 | bottle      | 36.548 | bus     | 42.875 |
+| car         | 39.940 | cat         | 41.828 | chair   | 38.130 |
+| cow         | 24.265 | diningtable | 35.749 | dog     | 31.035 |
+| horse       | 43.029 | motorbike   | 21.436 | person  | 50.896 |
+| pottedplant | 33.745 | sheep       | 28.722 | sofa    | 19.302 |
+| train       | 40.091 | tvmonitor   | 48.019 |         |        |
+
+2023-04-29 22:46:10.686 | INFO     | yolox.core.trainer:save_ckpt:371 - Save weights to ./YOLOX_outputs/yolox_s_voc2012
+2023-04-29 22:46:10.846 | INFO     | yolox.core.trainer:save_ckpt:371 - Save weights to ./YOLOX_outputs/yolox_s_voc2012
+2023-04-29 22:46:11.001 | INFO     | yolox.core.trainer:before_epoch:216 - ---> start train epoch3
+2023-04-29 22:46:14.624 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 3/16, iter: 20/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.181s, data_time: 0.005s, total_loss: 6.4, iou_loss: 2.1, l1_loss: 0.0, conf_loss: 3.0, cls_loss: 1.3, lr: 0.003648, size: 768, ETA: 0:11:21
+2023-04-29 22:46:18.510 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 3/16, iter: 40/239, gpu mem: 9044Mb, mem: 20.3Gb, iter_time: 0.194s, data_time: 0.024s, total_loss: 6.8, iou_loss: 2.2, l1_loss: 0.0, conf_loss: 2.9, cls_loss: 1.7, lr: 0.003632, size: 672, ETA: 0:11:16
+2023-04-29 22:46:22.224 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 3/16, iter: 60/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.185s, data_time: 0.038s, total_loss: 6.7, iou_loss: 2.3, l1_loss: 0.0, conf_loss: 2.8, cls_loss: 1.5, lr: 0.003614, size: 512, ETA: 0:11:09
+2023-04-29 22:46:26.069 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 3/16, iter: 80/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.192s, data_time: 0.036s, total_loss: 6.6, iou_loss: 2.2, l1_loss: 0.0, conf_loss: 2.9, cls_loss: 1.5, lr: 0.003596, size: 800, ETA: 0:11:04
+2023-04-29 22:46:29.806 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 3/16, iter: 100/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.186s, data_time: 0.055s, total_loss: 6.6, iou_loss: 2.4, l1_loss: 0.0, conf_loss: 2.8, cls_loss: 1.4, lr: 0.003576, size: 544, ETA: 0:10:58
+2023-04-29 22:46:33.547 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 3/16, iter: 120/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.185s, data_time: 0.053s, total_loss: 6.4, iou_loss: 2.1, l1_loss: 0.0, conf_loss: 3.0, cls_loss: 1.3, lr: 0.003555, size: 608, ETA: 0:10:52
+2023-04-29 22:46:37.267 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 3/16, iter: 140/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.185s, data_time: 0.054s, total_loss: 6.4, iou_loss: 2.1, l1_loss: 0.0, conf_loss: 2.8, cls_loss: 1.4, lr: 0.003533, size: 544, ETA: 0:10:46
+2023-04-29 22:46:40.983 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 3/16, iter: 160/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.184s, data_time: 0.050s, total_loss: 6.3, iou_loss: 2.3, l1_loss: 0.0, conf_loss: 2.6, cls_loss: 1.4, lr: 0.003511, size: 480, ETA: 0:10:40
+2023-04-29 22:46:44.920 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 3/16, iter: 180/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.196s, data_time: 0.051s, total_loss: 7.0, iou_loss: 2.1, l1_loss: 0.0, conf_loss: 3.3, cls_loss: 1.5, lr: 0.003487, size: 704, ETA: 0:10:36
+2023-04-29 22:46:48.664 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 3/16, iter: 200/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.187s, data_time: 0.049s, total_loss: 6.2, iou_loss: 2.3, l1_loss: 0.0, conf_loss: 2.7, cls_loss: 1.2, lr: 0.003462, size: 544, ETA: 0:10:30
+2023-04-29 22:46:52.469 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 3/16, iter: 220/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.189s, data_time: 0.040s, total_loss: 6.9, iou_loss: 2.4, l1_loss: 0.0, conf_loss: 3.1, cls_loss: 1.5, lr: 0.003436, size: 672, ETA: 0:10:25
+2023-04-29 22:46:56.267 | INFO     | yolox.core.trainer:save_ckpt:371 - Save weights to ./YOLOX_outputs/yolox_s_voc2012
+2023-04-29 22:46:56.443 | INFO     | yolox.core.trainer:before_epoch:216 - ---> start train epoch4
+2023-04-29 22:47:00.001 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 4/16, iter: 20/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.177s, data_time: 0.021s, total_loss: 6.3, iou_loss: 2.2, l1_loss: 0.0, conf_loss: 2.8, cls_loss: 1.3, lr: 0.003382, size: 672, ETA: 0:10:16
+2023-04-29 22:47:03.796 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 4/16, iter: 40/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.188s, data_time: 0.049s, total_loss: 6.3, iou_loss: 2.0, l1_loss: 0.0, conf_loss: 3.0, cls_loss: 1.2, lr: 0.003353, size: 768, ETA: 0:10:11
+2023-04-29 22:47:07.643 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 4/16, iter: 60/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.192s, data_time: 0.056s, total_loss: 6.5, iou_loss: 2.0, l1_loss: 0.0, conf_loss: 3.0, cls_loss: 1.4, lr: 0.003323, size: 608, ETA: 0:10:06
+2023-04-29 22:47:11.482 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 4/16, iter: 80/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.191s, data_time: 0.049s, total_loss: 6.8, iou_loss: 2.2, l1_loss: 0.0, conf_loss: 3.1, cls_loss: 1.5, lr: 0.003292, size: 800, ETA: 0:10:01
+2023-04-29 22:47:15.163 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 4/16, iter: 100/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.182s, data_time: 0.045s, total_loss: 7.0, iou_loss: 2.2, l1_loss: 0.0, conf_loss: 3.2, cls_loss: 1.6, lr: 0.003260, size: 704, ETA: 0:09:56
+2023-04-29 22:47:18.836 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 4/16, iter: 120/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.183s, data_time: 0.047s, total_loss: 6.6, iou_loss: 2.3, l1_loss: 0.0, conf_loss: 3.0, cls_loss: 1.4, lr: 0.003227, size: 672, ETA: 0:09:51
+2023-04-29 22:47:22.562 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 4/16, iter: 140/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.185s, data_time: 0.038s, total_loss: 6.1, iou_loss: 2.1, l1_loss: 0.0, conf_loss: 2.8, cls_loss: 1.2, lr: 0.003194, size: 608, ETA: 0:09:46
+2023-04-29 22:47:26.350 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 4/16, iter: 160/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.188s, data_time: 0.054s, total_loss: 6.1, iou_loss: 2.2, l1_loss: 0.0, conf_loss: 2.7, cls_loss: 1.2, lr: 0.003159, size: 640, ETA: 0:09:42
+2023-04-29 22:47:30.125 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 4/16, iter: 180/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.188s, data_time: 0.027s, total_loss: 6.2, iou_loss: 2.0, l1_loss: 0.0, conf_loss: 3.0, cls_loss: 1.3, lr: 0.003124, size: 736, ETA: 0:09:37
+2023-04-29 22:47:33.967 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 4/16, iter: 200/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.191s, data_time: 0.037s, total_loss: 5.9, iou_loss: 1.9, l1_loss: 0.0, conf_loss: 2.7, cls_loss: 1.4, lr: 0.003088, size: 704, ETA: 0:09:33
+2023-04-29 22:47:37.703 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 4/16, iter: 220/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.185s, data_time: 0.045s, total_loss: 5.6, iou_loss: 1.9, l1_loss: 0.0, conf_loss: 2.5, cls_loss: 1.2, lr: 0.003051, size: 736, ETA: 0:09:28
+2023-04-29 22:47:41.252 | INFO     | yolox.core.trainer:save_ckpt:371 - Save weights to ./YOLOX_outputs/yolox_s_voc2012
+2023-04-29 22:48:03.431 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:259 - Evaluate in main process...
+2023-04-29 22:48:05.026 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:292 - Loading and preparing results...
+2023-04-29 22:48:06.001 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:292 - DONE (t=0.97s)
+2023-04-29 22:48:06.001 | INFO     | pycocotools.coco:loadRes:366 - creating index...
+2023-04-29 22:48:06.058 | INFO     | pycocotools.coco:loadRes:366 - index created!
+2023-04-29 22:48:06.060 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:302 - Running per image evaluation...
+2023-04-29 22:48:06.060 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:302 - Evaluate annotation type *bbox*
+2023-04-29 22:48:14.972 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:302 - DONE (t=8.91s).
+2023-04-29 22:48:14.973 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:303 - Accumulating evaluation results...
+2023-04-29 22:48:17.397 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:303 - DONE (t=2.42s).
+2023-04-29 22:48:17.670 | INFO     | yolox.core.trainer:evaluate_and_save_model:361 -
+Average forward time: 1.96 ms, Average NMS time: 0.95 ms, Average inference time: 2.91 ms
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.277
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.495
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.278
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.089
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.223
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.313
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.276
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.440
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.458
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.214
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.380
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.491
+per class AP:
+| class       | AP     | class       | AP     | class   | AP     |
+|:------------|:-------|:------------|:-------|:--------|:-------|
+| aeroplane   | 37.544 | bicycle     | 36.763 | bird    | 23.599 |
+| boat        | 12.648 | bottle      | 19.906 | bus     | 47.292 |
+| car         | 35.558 | cat         | 25.981 | chair   | 22.241 |
+| cow         | 18.501 | diningtable | 21.114 | dog     | 18.214 |
+| horse       | 33.391 | motorbike   | 34.372 | person  | 34.931 |
+| pottedplant | 19.014 | sheep       | 31.578 | sofa    | 22.531 |
+| train       | 32.292 | tvmonitor   | 26.910 |         |        |
+per class AR:
+| class       | AR     | class       | AR     | class   | AR     |
+|:------------|:-------|:------------|:-------|:--------|:-------|
+| aeroplane   | 49.360 | bicycle     | 50.421 | bird    | 45.564 |
+| boat        | 30.733 | bottle      | 33.165 | bus     | 58.219 |
+| car         | 49.454 | cat         | 54.175 | chair   | 44.231 |
+| cow         | 42.133 | diningtable | 36.979 | dog     | 37.348 |
+| horse       | 49.839 | motorbike   | 47.766 | person  | 52.951 |
+| pottedplant | 43.561 | sheep       | 50.825 | sofa    | 46.796 |
+| train       | 50.912 | tvmonitor   | 40.773 |         |        |
+
+2023-04-29 22:48:17.671 | INFO     | yolox.core.trainer:save_ckpt:371 - Save weights to ./YOLOX_outputs/yolox_s_voc2012
+2023-04-29 22:48:17.869 | INFO     | yolox.core.trainer:save_ckpt:371 - Save weights to ./YOLOX_outputs/yolox_s_voc2012
+2023-04-29 22:48:18.019 | INFO     | yolox.core.trainer:before_epoch:216 - ---> start train epoch5
+2023-04-29 22:48:21.849 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 5/16, iter: 20/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.191s, data_time: 0.032s, total_loss: 6.8, iou_loss: 2.1, l1_loss: 0.0, conf_loss: 3.1, cls_loss: 1.6, lr: 0.002978, size: 640, ETA: 0:09:19
+2023-04-29 22:48:25.648 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 5/16, iter: 40/239, gpu mem: 9044Mb, mem: 20.3Gb, iter_time: 0.189s, data_time: 0.049s, total_loss: 5.7, iou_loss: 2.1, l1_loss: 0.0, conf_loss: 2.5, cls_loss: 1.1, lr: 0.002939, size: 640, ETA: 0:09:15
+2023-04-29 22:48:29.622 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 5/16, iter: 60/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.198s, data_time: 0.035s, total_loss: 5.8, iou_loss: 1.9, l1_loss: 0.0, conf_loss: 2.6, cls_loss: 1.3, lr: 0.002899, size: 672, ETA: 0:09:11
+2023-04-29 22:48:33.405 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 5/16, iter: 80/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.188s, data_time: 0.047s, total_loss: 6.3, iou_loss: 2.2, l1_loss: 0.0, conf_loss: 2.9, cls_loss: 1.2, lr: 0.002859, size: 544, ETA: 0:09:07
+2023-04-29 22:48:37.142 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 5/16, iter: 100/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.186s, data_time: 0.055s, total_loss: 6.0, iou_loss: 2.1, l1_loss: 0.0, conf_loss: 2.5, cls_loss: 1.4, lr: 0.002818, size: 512, ETA: 0:09:02
+2023-04-29 22:48:41.100 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 5/16, iter: 120/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.197s, data_time: 0.063s, total_loss: 6.0, iou_loss: 2.0, l1_loss: 0.0, conf_loss: 2.8, cls_loss: 1.2, lr: 0.002776, size: 768, ETA: 0:08:59
+2023-04-29 22:48:44.975 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 5/16, iter: 140/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.193s, data_time: 0.032s, total_loss: 6.2, iou_loss: 2.2, l1_loss: 0.0, conf_loss: 2.6, cls_loss: 1.4, lr: 0.002734, size: 800, ETA: 0:08:54
+2023-04-29 22:48:48.729 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 5/16, iter: 160/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.187s, data_time: 0.052s, total_loss: 6.0, iou_loss: 2.2, l1_loss: 0.0, conf_loss: 2.6, cls_loss: 1.2, lr: 0.002692, size: 576, ETA: 0:08:50
+2023-04-29 22:48:52.583 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 5/16, iter: 180/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.192s, data_time: 0.045s, total_loss: 5.9, iou_loss: 2.0, l1_loss: 0.0, conf_loss: 2.7, cls_loss: 1.2, lr: 0.002649, size: 800, ETA: 0:08:46
+2023-04-29 22:48:56.277 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 5/16, iter: 200/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.183s, data_time: 0.037s, total_loss: 5.9, iou_loss: 2.1, l1_loss: 0.0, conf_loss: 2.5, cls_loss: 1.3, lr: 0.002605, size: 544, ETA: 0:08:41
+2023-04-29 22:49:00.181 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 5/16, iter: 220/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.194s, data_time: 0.048s, total_loss: 6.5, iou_loss: 2.2, l1_loss: 0.0, conf_loss: 3.0, cls_loss: 1.3, lr: 0.002561, size: 768, ETA: 0:08:37
+2023-04-29 22:49:03.888 | INFO     | yolox.core.trainer:save_ckpt:371 - Save weights to ./YOLOX_outputs/yolox_s_voc2012
+2023-04-29 22:49:04.087 | INFO     | yolox.core.trainer:before_epoch:216 - ---> start train epoch6
+2023-04-29 22:49:07.825 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 6/16, iter: 20/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.186s, data_time: 0.049s, total_loss: 5.8, iou_loss: 2.1, l1_loss: 0.0, conf_loss: 2.6, cls_loss: 1.2, lr: 0.002474, size: 672, ETA: 0:08:29
+2023-04-29 22:49:11.677 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 6/16, iter: 40/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.191s, data_time: 0.062s, total_loss: 6.4, iou_loss: 2.1, l1_loss: 0.0, conf_loss: 2.9, cls_loss: 1.5, lr: 0.002429, size: 576, ETA: 0:08:25
+2023-04-29 22:49:15.591 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 6/16, iter: 60/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.195s, data_time: 0.061s, total_loss: 5.8, iou_loss: 2.1, l1_loss: 0.0, conf_loss: 2.5, cls_loss: 1.2, lr: 0.002384, size: 736, ETA: 0:08:21
+2023-04-29 22:49:19.312 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 6/16, iter: 80/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.186s, data_time: 0.046s, total_loss: 6.6, iou_loss: 2.1, l1_loss: 0.0, conf_loss: 3.0, cls_loss: 1.5, lr: 0.002338, size: 576, ETA: 0:08:17
+2023-04-29 22:49:23.148 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 6/16, iter: 100/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.191s, data_time: 0.048s, total_loss: 6.2, iou_loss: 2.2, l1_loss: 0.0, conf_loss: 2.9, cls_loss: 1.1, lr: 0.002292, size: 800, ETA: 0:08:13
+2023-04-29 22:49:26.816 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 6/16, iter: 120/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.182s, data_time: 0.050s, total_loss: 5.3, iou_loss: 1.9, l1_loss: 0.0, conf_loss: 2.3, cls_loss: 1.1, lr: 0.002246, size: 512, ETA: 0:08:09
+2023-04-29 22:49:30.770 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 6/16, iter: 140/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.197s, data_time: 0.068s, total_loss: 6.4, iou_loss: 2.1, l1_loss: 0.0, conf_loss: 3.1, cls_loss: 1.2, lr: 0.002200, size: 736, ETA: 0:08:05
+2023-04-29 22:49:34.568 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 6/16, iter: 160/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.189s, data_time: 0.055s, total_loss: 5.3, iou_loss: 1.9, l1_loss: 0.0, conf_loss: 2.4, cls_loss: 1.0, lr: 0.002153, size: 640, ETA: 0:08:01
+2023-04-29 22:49:38.295 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 6/16, iter: 180/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.186s, data_time: 0.043s, total_loss: 6.3, iou_loss: 2.0, l1_loss: 0.0, conf_loss: 2.8, cls_loss: 1.4, lr: 0.002107, size: 512, ETA: 0:07:56
+2023-04-29 22:49:42.088 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 6/16, iter: 200/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.183s, data_time: 0.055s, total_loss: 5.8, iou_loss: 1.9, l1_loss: 0.0, conf_loss: 2.4, cls_loss: 1.5, lr: 0.002060, size: 512, ETA: 0:07:52
+2023-04-29 22:49:45.939 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 6/16, iter: 220/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.192s, data_time: 0.050s, total_loss: 6.6, iou_loss: 2.1, l1_loss: 0.0, conf_loss: 3.2, cls_loss: 1.4, lr: 0.002013, size: 768, ETA: 0:07:48
+2023-04-29 22:49:49.551 | INFO     | yolox.core.trainer:save_ckpt:371 - Save weights to ./YOLOX_outputs/yolox_s_voc2012
+2023-04-29 22:50:11.310 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:259 - Evaluate in main process...
+2023-04-29 22:50:13.254 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:292 - Loading and preparing results...
+2023-04-29 22:50:14.384 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:292 - DONE (t=1.13s)
+2023-04-29 22:50:14.384 | INFO     | pycocotools.coco:loadRes:366 - creating index...
+2023-04-29 22:50:14.462 | INFO     | pycocotools.coco:loadRes:366 - index created!
+2023-04-29 22:50:14.465 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:302 - Running per image evaluation...
+2023-04-29 22:50:14.465 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:302 - Evaluate annotation type *bbox*
+2023-04-29 22:50:24.139 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:302 - DONE (t=9.67s).
+2023-04-29 22:50:24.139 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:303 - Accumulating evaluation results...
+2023-04-29 22:50:27.028 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:303 - DONE (t=2.89s).
+2023-04-29 22:50:27.352 | INFO     | yolox.core.trainer:evaluate_and_save_model:361 -
+Average forward time: 1.92 ms, Average NMS time: 0.98 ms, Average inference time: 2.91 ms
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.328
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.567
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.336
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.116
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.261
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.381
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.312
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.492
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.512
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.291
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.441
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.560
+per class AP:
+| class       | AP     | class       | AP     | class   | AP     |
+|:------------|:-------|:------------|:-------|:--------|:-------|
+| aeroplane   | 31.194 | bicycle     | 41.276 | bird    | 27.111 |
+| boat        | 18.607 | bottle      | 28.435 | bus     | 48.896 |
+| car         | 41.282 | cat         | 30.931 | chair   | 22.921 |
+| cow         | 29.469 | diningtable | 24.238 | dog     | 32.394 |
+| horse       | 40.004 | motorbike   | 38.239 | person  | 41.661 |
+| pottedplant | 19.790 | sheep       | 39.785 | sofa    | 25.118 |
+| train       | 37.027 | tvmonitor   | 36.961 |         |        |
+per class AR:
+| class       | AR     | class       | AR     | class   | AR     |
+|:------------|:-------|:------------|:-------|:--------|:-------|
+| aeroplane   | 51.446 | bicycle     | 57.105 | bird    | 53.116 |
+| boat        | 41.996 | bottle      | 42.483 | bus     | 59.281 |
+| car         | 56.411 | cat         | 52.832 | chair   | 44.168 |
+| cow         | 50.634 | diningtable | 40.455 | dog     | 52.471 |
+| horse       | 53.164 | motorbike   | 55.133 | person  | 57.350 |
+| pottedplant | 44.871 | sheep       | 57.814 | sofa    | 44.574 |
+| train       | 54.347 | tvmonitor   | 54.010 |         |        |
+
+2023-04-29 22:50:27.353 | INFO     | yolox.core.trainer:save_ckpt:371 - Save weights to ./YOLOX_outputs/yolox_s_voc2012
+2023-04-29 22:50:27.550 | INFO     | yolox.core.trainer:save_ckpt:371 - Save weights to ./YOLOX_outputs/yolox_s_voc2012
+2023-04-29 22:50:27.702 | INFO     | yolox.core.trainer:before_epoch:216 - ---> start train epoch7
+2023-04-29 22:50:31.359 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 7/16, iter: 20/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.182s, data_time: 0.014s, total_loss: 4.8, iou_loss: 1.7, l1_loss: 0.0, conf_loss: 2.2, cls_loss: 0.9, lr: 0.001922, size: 480, ETA: 0:07:40
+2023-04-29 22:50:35.270 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 7/16, iter: 40/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.194s, data_time: 0.063s, total_loss: 7.3, iou_loss: 2.5, l1_loss: 0.0, conf_loss: 3.3, cls_loss: 1.5, lr: 0.001875, size: 736, ETA: 0:07:36
+2023-04-29 22:50:39.228 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 7/16, iter: 60/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.196s, data_time: 0.040s, total_loss: 5.8, iou_loss: 2.0, l1_loss: 0.0, conf_loss: 2.8, cls_loss: 1.1, lr: 0.001828, size: 800, ETA: 0:07:32
+2023-04-29 22:50:42.961 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 7/16, iter: 80/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.186s, data_time: 0.053s, total_loss: 5.0, iou_loss: 1.9, l1_loss: 0.0, conf_loss: 2.1, cls_loss: 1.0, lr: 0.001782, size: 480, ETA: 0:07:28
+2023-04-29 22:50:46.822 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 7/16, iter: 100/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.192s, data_time: 0.063s, total_loss: 5.4, iou_loss: 2.0, l1_loss: 0.0, conf_loss: 2.3, cls_loss: 1.0, lr: 0.001735, size: 576, ETA: 0:07:24
+2023-04-29 22:50:50.720 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 7/16, iter: 120/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.194s, data_time: 0.055s, total_loss: 5.8, iou_loss: 2.2, l1_loss: 0.0, conf_loss: 2.3, cls_loss: 1.4, lr: 0.001689, size: 480, ETA: 0:07:20
+2023-04-29 22:50:54.526 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 7/16, iter: 140/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.188s, data_time: 0.058s, total_loss: 6.1, iou_loss: 2.1, l1_loss: 0.0, conf_loss: 2.7, cls_loss: 1.3, lr: 0.001643, size: 800, ETA: 0:07:16
+2023-04-29 22:50:58.335 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 7/16, iter: 160/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.190s, data_time: 0.041s, total_loss: 5.1, iou_loss: 2.0, l1_loss: 0.0, conf_loss: 2.1, cls_loss: 0.9, lr: 0.001597, size: 672, ETA: 0:07:12
+2023-04-29 22:51:02.235 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 7/16, iter: 180/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.194s, data_time: 0.053s, total_loss: 4.9, iou_loss: 1.8, l1_loss: 0.0, conf_loss: 2.1, cls_loss: 1.0, lr: 0.001551, size: 608, ETA: 0:07:08
+2023-04-29 22:51:06.149 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 7/16, iter: 200/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.194s, data_time: 0.058s, total_loss: 5.6, iou_loss: 2.1, l1_loss: 0.0, conf_loss: 2.2, cls_loss: 1.3, lr: 0.001506, size: 480, ETA: 0:07:04
+2023-04-29 22:51:10.031 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 7/16, iter: 220/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.193s, data_time: 0.047s, total_loss: 5.5, iou_loss: 1.9, l1_loss: 0.0, conf_loss: 2.5, cls_loss: 1.1, lr: 0.001461, size: 640, ETA: 0:07:01
+2023-04-29 22:51:13.615 | INFO     | yolox.core.trainer:save_ckpt:371 - Save weights to ./YOLOX_outputs/yolox_s_voc2012
+2023-04-29 22:51:13.817 | INFO     | yolox.core.trainer:before_epoch:216 - ---> start train epoch8
+2023-04-29 22:51:17.389 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 8/16, iter: 20/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.178s, data_time: 0.053s, total_loss: 5.8, iou_loss: 2.0, l1_loss: 0.0, conf_loss: 2.6, cls_loss: 1.2, lr: 0.001374, size: 544, ETA: 0:06:52
+2023-04-29 22:51:21.166 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 8/16, iter: 40/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.187s, data_time: 0.060s, total_loss: 5.1, iou_loss: 1.9, l1_loss: 0.0, conf_loss: 2.3, cls_loss: 0.9, lr: 0.001330, size: 608, ETA: 0:06:48
+2023-04-29 22:51:25.066 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 8/16, iter: 60/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.194s, data_time: 0.063s, total_loss: 5.0, iou_loss: 1.8, l1_loss: 0.0, conf_loss: 2.3, cls_loss: 0.9, lr: 0.001287, size: 800, ETA: 0:06:45
+2023-04-29 22:51:28.768 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 8/16, iter: 80/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.185s, data_time: 0.054s, total_loss: 5.3, iou_loss: 1.7, l1_loss: 0.0, conf_loss: 2.4, cls_loss: 1.2, lr: 0.001244, size: 544, ETA: 0:06:40
+2023-04-29 22:51:32.657 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 8/16, iter: 100/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.194s, data_time: 0.054s, total_loss: 5.4, iou_loss: 1.8, l1_loss: 0.0, conf_loss: 2.5, cls_loss: 1.1, lr: 0.001201, size: 640, ETA: 0:06:37
+2023-04-29 22:51:36.549 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 8/16, iter: 120/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.193s, data_time: 0.050s, total_loss: 5.1, iou_loss: 2.0, l1_loss: 0.0, conf_loss: 2.1, cls_loss: 1.0, lr: 0.001159, size: 576, ETA: 0:06:33
+2023-04-29 22:51:40.341 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 8/16, iter: 140/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.189s, data_time: 0.066s, total_loss: 5.0, iou_loss: 1.8, l1_loss: 0.0, conf_loss: 2.1, cls_loss: 1.1, lr: 0.001118, size: 480, ETA: 0:06:29
+2023-04-29 22:51:44.202 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 8/16, iter: 160/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.193s, data_time: 0.068s, total_loss: 5.3, iou_loss: 2.0, l1_loss: 0.0, conf_loss: 2.2, cls_loss: 1.1, lr: 0.001077, size: 576, ETA: 0:06:25
+2023-04-29 22:51:48.160 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 8/16, iter: 180/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.197s, data_time: 0.056s, total_loss: 5.0, iou_loss: 1.9, l1_loss: 0.0, conf_loss: 2.2, cls_loss: 0.9, lr: 0.001037, size: 768, ETA: 0:06:21
+2023-04-29 22:51:51.945 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 8/16, iter: 200/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.189s, data_time: 0.025s, total_loss: 5.6, iou_loss: 2.0, l1_loss: 0.0, conf_loss: 2.4, cls_loss: 1.2, lr: 0.000997, size: 480, ETA: 0:06:17
+2023-04-29 22:51:55.691 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 8/16, iter: 220/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.186s, data_time: 0.064s, total_loss: 5.0, iou_loss: 1.7, l1_loss: 0.0, conf_loss: 2.1, cls_loss: 1.2, lr: 0.000958, size: 480, ETA: 0:06:13
+2023-04-29 22:51:59.546 | INFO     | yolox.core.trainer:save_ckpt:371 - Save weights to ./YOLOX_outputs/yolox_s_voc2012
+2023-04-29 22:52:23.583 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:259 - Evaluate in main process...
+2023-04-29 22:52:24.813 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:292 - Loading and preparing results...
+2023-04-29 22:52:25.466 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:292 - DONE (t=0.65s)
+2023-04-29 22:52:25.467 | INFO     | pycocotools.coco:loadRes:366 - creating index...
+2023-04-29 22:52:25.517 | INFO     | pycocotools.coco:loadRes:366 - index created!
+2023-04-29 22:52:25.520 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:302 - Running per image evaluation...
+2023-04-29 22:52:25.520 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:302 - Evaluate annotation type *bbox*
+2023-04-29 22:52:33.732 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:302 - DONE (t=8.21s).
+2023-04-29 22:52:33.733 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:303 - Accumulating evaluation results...
+2023-04-29 22:52:35.955 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:303 - DONE (t=2.22s).
+2023-04-29 22:52:36.204 | INFO     | yolox.core.trainer:evaluate_and_save_model:361 -
+Average forward time: 2.02 ms, Average NMS time: 1.06 ms, Average inference time: 3.09 ms
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.425
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.664
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.465
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.154
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.325
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.488
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.373
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.565
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.582
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.316
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.489
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.635
+per class AP:
+| class       | AP     | class       | AP     | class   | AP     |
+|:------------|:-------|:------------|:-------|:--------|:-------|
+| aeroplane   | 46.656 | bicycle     | 45.615 | bird    | 40.061 |
+| boat        | 28.096 | bottle      | 32.017 | bus     | 61.380 |
+| car         | 49.067 | cat         | 40.695 | chair   | 32.597 |
+| cow         | 37.628 | diningtable | 35.865 | dog     | 46.480 |
+| horse       | 50.827 | motorbike   | 48.576 | person  | 50.308 |
+| pottedplant | 23.086 | sheep       | 47.456 | sofa    | 37.596 |
+| train       | 50.267 | tvmonitor   | 46.094 |         |        |
+per class AR:
+| class       | AR     | class       | AR     | class   | AR     |
+|:------------|:-------|:------------|:-------|:--------|:-------|
+| aeroplane   | 57.996 | bicycle     | 56.711 | bird    | 55.835 |
+| boat        | 47.169 | bottle      | 48.308 | bus     | 68.375 |
+| car         | 60.486 | cat         | 55.680 | chair   | 52.740 |
+| cow         | 56.369 | diningtable | 52.513 | dog     | 66.261 |
+| horse       | 61.340 | motorbike   | 62.394 | person  | 63.681 |
+| pottedplant | 47.140 | sheep       | 62.474 | sofa    | 62.429 |
+| train       | 64.498 | tvmonitor   | 60.894 |         |        |
+
+2023-04-29 22:52:36.205 | INFO     | yolox.core.trainer:save_ckpt:371 - Save weights to ./YOLOX_outputs/yolox_s_voc2012
+2023-04-29 22:52:36.546 | INFO     | yolox.core.trainer:save_ckpt:371 - Save weights to ./YOLOX_outputs/yolox_s_voc2012
+2023-04-29 22:52:36.698 | INFO     | yolox.core.trainer:before_epoch:216 - ---> start train epoch9
+2023-04-29 22:52:40.702 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 9/16, iter: 20/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.199s, data_time: 0.002s, total_loss: 5.4, iou_loss: 1.9, l1_loss: 0.0, conf_loss: 2.5, cls_loss: 1.1, lr: 0.000884, size: 576, ETA: 0:06:06
+2023-04-29 22:52:44.310 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 9/16, iter: 40/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.180s, data_time: 0.002s, total_loss: 4.5, iou_loss: 1.8, l1_loss: 0.0, conf_loss: 1.9, cls_loss: 0.9, lr: 0.000847, size: 480, ETA: 0:06:02
+2023-04-29 22:52:48.118 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 9/16, iter: 60/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.189s, data_time: 0.005s, total_loss: 5.3, iou_loss: 1.8, l1_loss: 0.0, conf_loss: 2.4, cls_loss: 1.0, lr: 0.000811, size: 576, ETA: 0:05:58
+2023-04-29 22:52:52.006 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 9/16, iter: 80/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.194s, data_time: 0.030s, total_loss: 5.7, iou_loss: 1.9, l1_loss: 0.0, conf_loss: 2.7, cls_loss: 1.2, lr: 0.000776, size: 800, ETA: 0:05:54
+2023-04-29 22:52:55.799 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 9/16, iter: 100/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.189s, data_time: 0.030s, total_loss: 5.5, iou_loss: 2.1, l1_loss: 0.0, conf_loss: 2.4, cls_loss: 1.0, lr: 0.000742, size: 704, ETA: 0:05:50
+2023-04-29 22:52:59.643 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 9/16, iter: 120/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.192s, data_time: 0.039s, total_loss: 4.7, iou_loss: 1.7, l1_loss: 0.0, conf_loss: 2.0, cls_loss: 1.0, lr: 0.000708, size: 800, ETA: 0:05:46
+2023-04-29 22:53:03.293 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 9/16, iter: 140/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.181s, data_time: 0.026s, total_loss: 5.5, iou_loss: 1.8, l1_loss: 0.0, conf_loss: 2.4, cls_loss: 1.3, lr: 0.000676, size: 512, ETA: 0:05:42
+2023-04-29 22:53:06.987 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 9/16, iter: 160/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.184s, data_time: 0.049s, total_loss: 5.4, iou_loss: 2.0, l1_loss: 0.0, conf_loss: 2.2, cls_loss: 1.1, lr: 0.000644, size: 768, ETA: 0:05:38
+2023-04-29 22:53:10.706 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 9/16, iter: 180/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.185s, data_time: 0.038s, total_loss: 4.7, iou_loss: 1.7, l1_loss: 0.0, conf_loss: 2.1, cls_loss: 0.9, lr: 0.000613, size: 608, ETA: 0:05:34
+2023-04-29 22:53:14.552 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 9/16, iter: 200/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.192s, data_time: 0.057s, total_loss: 4.9, iou_loss: 1.9, l1_loss: 0.0, conf_loss: 2.0, cls_loss: 0.9, lr: 0.000583, size: 608, ETA: 0:05:30
+2023-04-29 22:53:18.318 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 9/16, iter: 220/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.188s, data_time: 0.049s, total_loss: 5.0, iou_loss: 1.8, l1_loss: 0.0, conf_loss: 2.1, cls_loss: 1.0, lr: 0.000554, size: 512, ETA: 0:05:26
+2023-04-29 22:53:22.083 | INFO     | yolox.core.trainer:save_ckpt:371 - Save weights to ./YOLOX_outputs/yolox_s_voc2012
+2023-04-29 22:53:22.266 | INFO     | yolox.core.trainer:before_epoch:216 - ---> start train epoch10
+2023-04-29 22:53:25.840 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 10/16, iter: 20/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.178s, data_time: 0.013s, total_loss: 4.8, iou_loss: 1.9, l1_loss: 0.0, conf_loss: 2.0, cls_loss: 0.9, lr: 0.000501, size: 480, ETA: 0:05:18
+2023-04-29 22:53:29.568 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 10/16, iter: 40/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.185s, data_time: 0.059s, total_loss: 4.9, iou_loss: 1.8, l1_loss: 0.0, conf_loss: 2.1, cls_loss: 0.9, lr: 0.000475, size: 512, ETA: 0:05:14
+2023-04-29 22:53:33.504 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 10/16, iter: 60/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.196s, data_time: 0.073s, total_loss: 5.0, iou_loss: 1.9, l1_loss: 0.0, conf_loss: 2.2, cls_loss: 0.9, lr: 0.000450, size: 512, ETA: 0:05:11
+2023-04-29 22:53:37.355 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 10/16, iter: 80/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.192s, data_time: 0.047s, total_loss: 4.8, iou_loss: 1.7, l1_loss: 0.0, conf_loss: 1.9, cls_loss: 1.1, lr: 0.000426, size: 672, ETA: 0:05:07
+2023-04-29 22:53:41.146 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 10/16, iter: 100/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.189s, data_time: 0.061s, total_loss: 5.0, iou_loss: 1.8, l1_loss: 0.0, conf_loss: 2.2, cls_loss: 1.0, lr: 0.000403, size: 512, ETA: 0:05:03
+2023-04-29 22:53:45.003 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 10/16, iter: 120/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.192s, data_time: 0.075s, total_loss: 5.4, iou_loss: 2.0, l1_loss: 0.0, conf_loss: 2.2, cls_loss: 1.2, lr: 0.000381, size: 608, ETA: 0:04:59
+2023-04-29 22:53:48.746 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 10/16, iter: 140/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.186s, data_time: 0.057s, total_loss: 5.7, iou_loss: 1.9, l1_loss: 0.0, conf_loss: 2.7, cls_loss: 1.1, lr: 0.000360, size: 672, ETA: 0:04:55
+2023-04-29 22:53:52.512 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 10/16, iter: 160/239, gpu mem: 9044Mb, mem: 20.2Gb, iter_time: 0.188s, data_time: 0.051s, total_loss: 4.6, iou_loss: 1.7, l1_loss: 0.0, conf_loss: 1.9, cls_loss: 0.9, lr: 0.000341, size: 672, ETA: 0:04:51
+2023-04-29 22:53:56.200 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 10/16, iter: 180/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.184s, data_time: 0.060s, total_loss: 5.4, iou_loss: 1.9, l1_loss: 0.0, conf_loss: 2.5, cls_loss: 1.0, lr: 0.000322, size: 608, ETA: 0:04:47
+2023-04-29 22:54:00.046 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 10/16, iter: 200/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.192s, data_time: 0.068s, total_loss: 5.0, iou_loss: 1.9, l1_loss: 0.0, conf_loss: 2.1, cls_loss: 1.0, lr: 0.000305, size: 736, ETA: 0:04:43
+2023-04-29 22:54:03.965 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 10/16, iter: 220/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.189s, data_time: 0.032s, total_loss: 4.6, iou_loss: 1.9, l1_loss: 0.0, conf_loss: 1.9, cls_loss: 0.8, lr: 0.000289, size: 640, ETA: 0:04:39
+2023-04-29 22:54:07.556 | INFO     | yolox.core.trainer:save_ckpt:371 - Save weights to ./YOLOX_outputs/yolox_s_voc2012
+2023-04-29 22:54:30.508 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:259 - Evaluate in main process...
+2023-04-29 22:54:31.871 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:292 - Loading and preparing results...
+2023-04-29 22:54:32.921 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:292 - DONE (t=1.05s)
+2023-04-29 22:54:32.922 | INFO     | pycocotools.coco:loadRes:366 - creating index...
+2023-04-29 22:54:32.973 | INFO     | pycocotools.coco:loadRes:366 - index created!
+2023-04-29 22:54:32.975 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:302 - Running per image evaluation...
+2023-04-29 22:54:32.976 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:302 - Evaluate annotation type *bbox*
+2023-04-29 22:54:41.161 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:302 - DONE (t=8.19s).
+2023-04-29 22:54:41.163 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:303 - Accumulating evaluation results...
+2023-04-29 22:54:43.223 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:303 - DONE (t=2.06s).
+2023-04-29 22:54:43.482 | INFO     | yolox.core.trainer:evaluate_and_save_model:361 -
+Average forward time: 1.99 ms, Average NMS time: 0.98 ms, Average inference time: 2.97 ms
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.468
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.697
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.522
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.161
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.358
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.541
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.404
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.606
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.624
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.323
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.532
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.680
+per class AP:
+| class       | AP     | class       | AP     | class   | AP     |
+|:------------|:-------|:------------|:-------|:--------|:-------|
+| aeroplane   | 51.064 | bicycle     | 50.459 | bird    | 44.250 |
+| boat        | 31.762 | bottle      | 35.248 | bus     | 63.689 |
+| car         | 51.661 | cat         | 52.678 | chair   | 35.955 |
+| cow         | 43.536 | diningtable | 37.107 | dog     | 52.614 |
+| horse       | 54.791 | motorbike   | 52.113 | person  | 52.794 |
+| pottedplant | 27.766 | sheep       | 50.948 | sofa    | 43.017 |
+| train       | 56.361 | tvmonitor   | 48.498 |         |        |
+per class AR:
+| class       | AR     | class       | AR     | class   | AR     |
+|:------------|:-------|:------------|:-------|:--------|:-------|
+| aeroplane   | 62.045 | bicycle     | 62.289 | bird    | 59.921 |
+| boat        | 52.525 | bottle      | 50.750 | bus     | 71.281 |
+| car         | 64.152 | cat         | 67.621 | chair   | 57.812 |
+| cow         | 63.026 | diningtable | 55.829 | dog     | 67.671 |
+| horse       | 63.673 | motorbike   | 66.410 | person  | 65.325 |
+| pottedplant | 53.155 | sheep       | 64.928 | sofa    | 66.202 |
+| train       | 68.389 | tvmonitor   | 64.831 |         |        |
+
+2023-04-29 22:54:43.484 | INFO     | yolox.core.trainer:save_ckpt:371 - Save weights to ./YOLOX_outputs/yolox_s_voc2012
+2023-04-29 22:54:43.697 | INFO     | yolox.core.trainer:save_ckpt:371 - Save weights to ./YOLOX_outputs/yolox_s_voc2012
+2023-04-29 22:54:43.854 | INFO     | yolox.core.trainer:before_epoch:216 - ---> start train epoch11
+2023-04-29 22:54:43.855 | INFO     | yolox.core.trainer:before_epoch:219 - --->No mosaic aug now!
+2023-04-29 22:54:43.855 | INFO     | yolox.core.trainer:before_epoch:221 - --->Add additional L1 loss now!
+2023-04-29 22:54:43.856 | INFO     | yolox.core.trainer:save_ckpt:371 - Save weights to ./YOLOX_outputs/yolox_s_voc2012
+2023-04-29 22:54:48.788 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 11/16, iter: 20/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.240s, data_time: 0.003s, total_loss: 3.8, iou_loss: 1.2, l1_loss: 0.6, conf_loss: 1.3, cls_loss: 0.7, lr: 0.000261, size: 736, ETA: 0:04:32
+2023-04-29 22:54:53.072 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 11/16, iter: 40/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.213s, data_time: 0.003s, total_loss: 4.7, iou_loss: 1.4, l1_loss: 0.6, conf_loss: 1.8, cls_loss: 0.9, lr: 0.000248, size: 480, ETA: 0:04:29
+2023-04-29 22:54:57.243 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 11/16, iter: 60/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.207s, data_time: 0.004s, total_loss: 4.3, iou_loss: 1.4, l1_loss: 0.8, conf_loss: 1.6, cls_loss: 0.5, lr: 0.000237, size: 672, ETA: 0:04:25
+2023-04-29 22:55:01.187 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 11/16, iter: 80/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.193s, data_time: 0.002s, total_loss: 3.9, iou_loss: 1.5, l1_loss: 0.6, conf_loss: 1.3, cls_loss: 0.5, lr: 0.000226, size: 640, ETA: 0:04:21
+2023-04-29 22:55:05.007 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 11/16, iter: 100/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.190s, data_time: 0.003s, total_loss: 3.3, iou_loss: 1.1, l1_loss: 0.6, conf_loss: 1.2, cls_loss: 0.5, lr: 0.000217, size: 672, ETA: 0:04:17
+2023-04-29 22:55:09.478 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 11/16, iter: 120/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.223s, data_time: 0.006s, total_loss: 4.3, iou_loss: 1.5, l1_loss: 0.8, conf_loss: 1.5, cls_loss: 0.5, lr: 0.000209, size: 768, ETA: 0:04:14
+2023-04-29 22:55:14.148 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 11/16, iter: 140/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.233s, data_time: 0.004s, total_loss: 5.3, iou_loss: 1.6, l1_loss: 1.0, conf_loss: 2.0, cls_loss: 0.7, lr: 0.000203, size: 800, ETA: 0:04:10
+2023-04-29 22:55:18.775 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 11/16, iter: 160/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.230s, data_time: 0.003s, total_loss: 3.2, iou_loss: 1.3, l1_loss: 0.5, conf_loss: 1.0, cls_loss: 0.5, lr: 0.000197, size: 704, ETA: 0:04:07
+2023-04-29 22:55:22.990 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 11/16, iter: 180/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.209s, data_time: 0.004s, total_loss: 3.7, iou_loss: 1.3, l1_loss: 0.6, conf_loss: 1.2, cls_loss: 0.6, lr: 0.000193, size: 544, ETA: 0:04:03
+2023-04-29 22:55:27.014 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 11/16, iter: 200/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.199s, data_time: 0.003s, total_loss: 4.3, iou_loss: 1.4, l1_loss: 0.7, conf_loss: 1.6, cls_loss: 0.6, lr: 0.000190, size: 512, ETA: 0:03:59
+2023-04-29 22:55:31.201 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 11/16, iter: 220/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.207s, data_time: 0.003s, total_loss: 4.4, iou_loss: 1.5, l1_loss: 0.7, conf_loss: 1.6, cls_loss: 0.6, lr: 0.000188, size: 544, ETA: 0:03:55
+2023-04-29 22:55:35.305 | INFO     | yolox.core.trainer:save_ckpt:371 - Save weights to ./YOLOX_outputs/yolox_s_voc2012
+2023-04-29 22:55:57.184 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:259 - Evaluate in main process...
+2023-04-29 22:55:57.964 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:292 - Loading and preparing results...
+2023-04-29 22:55:58.549 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:292 - DONE (t=0.58s)
+2023-04-29 22:55:58.550 | INFO     | pycocotools.coco:loadRes:366 - creating index...
+2023-04-29 22:55:58.578 | INFO     | pycocotools.coco:loadRes:366 - index created!
+2023-04-29 22:55:58.580 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:302 - Running per image evaluation...
+2023-04-29 22:55:58.580 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:302 - Evaluate annotation type *bbox*
+2023-04-29 22:56:04.589 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:302 - DONE (t=6.01s).
+2023-04-29 22:56:04.589 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:303 - Accumulating evaluation results...
+2023-04-29 22:56:05.996 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:303 - DONE (t=1.41s).
+2023-04-29 22:56:06.145 | INFO     | yolox.core.trainer:evaluate_and_save_model:361 -
+Average forward time: 2.18 ms, Average NMS time: 1.10 ms, Average inference time: 3.28 ms
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.508
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.738
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.566
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.182
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.374
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.588
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.424
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.624
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.639
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.314
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.532
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.705
+per class AP:
+| class       | AP     | class       | AP     | class   | AP     |
+|:------------|:-------|:------------|:-------|:--------|:-------|
+| aeroplane   | 55.109 | bicycle     | 55.975 | bird    | 47.018 |
+| boat        | 36.134 | bottle      | 38.412 | bus     | 65.831 |
+| car         | 55.711 | cat         | 59.118 | chair   | 38.776 |
+| cow         | 48.789 | diningtable | 41.973 | dog     | 57.755 |
+| horse       | 57.799 | motorbike   | 57.272 | person  | 55.782 |
+| pottedplant | 30.457 | sheep       | 54.429 | sofa    | 45.358 |
+| train       | 61.017 | tvmonitor   | 52.319 |         |        |
+per class AR:
+| class       | AR     | class       | AR     | class   | AR     |
+|:------------|:-------|:------------|:-------|:--------|:-------|
+| aeroplane   | 64.277 | bicycle     | 65.763 | bird    | 59.857 |
+| boat        | 54.012 | bottle      | 51.896 | bus     | 72.469 |
+| car         | 65.294 | cat         | 70.032 | chair   | 59.462 |
+| cow         | 64.697 | diningtable | 58.797 | dog     | 70.517 |
+| horse       | 65.362 | motorbike   | 67.872 | person  | 66.912 |
+| pottedplant | 52.823 | sheep       | 65.959 | sofa    | 65.866 |
+| train       | 70.517 | tvmonitor   | 65.411 |         |        |
+
+2023-04-29 22:56:06.146 | INFO     | yolox.core.trainer:save_ckpt:371 - Save weights to ./YOLOX_outputs/yolox_s_voc2012
+2023-04-29 22:56:06.359 | INFO     | yolox.core.trainer:save_ckpt:371 - Save weights to ./YOLOX_outputs/yolox_s_voc2012
+2023-04-29 22:56:06.486 | INFO     | yolox.core.trainer:before_epoch:216 - ---> start train epoch12
+2023-04-29 22:56:10.891 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 12/16, iter: 20/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.219s, data_time: 0.004s, total_loss: 4.1, iou_loss: 1.3, l1_loss: 0.7, conf_loss: 1.5, cls_loss: 0.6, lr: 0.000188, size: 768, ETA: 0:03:48
+2023-04-29 22:56:15.586 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 12/16, iter: 40/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.234s, data_time: 0.004s, total_loss: 4.5, iou_loss: 1.3, l1_loss: 0.7, conf_loss: 1.7, cls_loss: 0.9, lr: 0.000188, size: 800, ETA: 0:03:45
+2023-04-29 22:56:20.005 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 12/16, iter: 60/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.220s, data_time: 0.003s, total_loss: 3.2, iou_loss: 1.1, l1_loss: 0.5, conf_loss: 1.1, cls_loss: 0.4, lr: 0.000188, size: 608, ETA: 0:03:41
+2023-04-29 22:56:24.519 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 12/16, iter: 80/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.225s, data_time: 0.005s, total_loss: 3.7, iou_loss: 1.3, l1_loss: 0.6, conf_loss: 1.3, cls_loss: 0.5, lr: 0.000188, size: 608, ETA: 0:03:37
+2023-04-29 22:56:28.511 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 12/16, iter: 100/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.199s, data_time: 0.003s, total_loss: 4.5, iou_loss: 1.5, l1_loss: 0.7, conf_loss: 1.6, cls_loss: 0.7, lr: 0.000188, size: 512, ETA: 0:03:33
+2023-04-29 22:56:32.655 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 12/16, iter: 120/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.206s, data_time: 0.003s, total_loss: 3.8, iou_loss: 1.3, l1_loss: 0.5, conf_loss: 1.5, cls_loss: 0.5, lr: 0.000188, size: 544, ETA: 0:03:30
+2023-04-29 22:56:37.027 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 12/16, iter: 140/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.217s, data_time: 0.004s, total_loss: 3.8, iou_loss: 1.1, l1_loss: 0.6, conf_loss: 1.4, cls_loss: 0.8, lr: 0.000188, size: 800, ETA: 0:03:26
+2023-04-29 22:56:41.574 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 12/16, iter: 160/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.226s, data_time: 0.003s, total_loss: 3.3, iou_loss: 1.1, l1_loss: 0.5, conf_loss: 1.4, cls_loss: 0.4, lr: 0.000188, size: 544, ETA: 0:03:22
+2023-04-29 22:56:46.093 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 12/16, iter: 180/239, gpu mem: 9044Mb, mem: 20.0Gb, iter_time: 0.222s, data_time: 0.004s, total_loss: 4.0, iou_loss: 1.3, l1_loss: 0.6, conf_loss: 1.4, cls_loss: 0.6, lr: 0.000188, size: 544, ETA: 0:03:18
+2023-04-29 22:56:49.976 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 12/16, iter: 200/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.194s, data_time: 0.003s, total_loss: 4.2, iou_loss: 1.3, l1_loss: 0.7, conf_loss: 1.6, cls_loss: 0.6, lr: 0.000188, size: 512, ETA: 0:03:14
+2023-04-29 22:56:54.623 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 12/16, iter: 220/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.232s, data_time: 0.003s, total_loss: 4.9, iou_loss: 1.6, l1_loss: 0.7, conf_loss: 1.9, cls_loss: 0.7, lr: 0.000188, size: 736, ETA: 0:03:11
+2023-04-29 22:56:58.693 | INFO     | yolox.core.trainer:save_ckpt:371 - Save weights to ./YOLOX_outputs/yolox_s_voc2012
+2023-04-29 22:57:20.728 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:259 - Evaluate in main process...
+2023-04-29 22:57:21.388 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:292 - Loading and preparing results...
+2023-04-29 22:57:21.886 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:292 - DONE (t=0.50s)
+2023-04-29 22:57:21.887 | INFO     | pycocotools.coco:loadRes:366 - creating index...
+2023-04-29 22:57:21.911 | INFO     | pycocotools.coco:loadRes:366 - index created!
+2023-04-29 22:57:21.912 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:302 - Running per image evaluation...
+2023-04-29 22:57:21.913 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:302 - Evaluate annotation type *bbox*
+2023-04-29 22:57:27.428 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:302 - DONE (t=5.52s).
+2023-04-29 22:57:27.429 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:303 - Accumulating evaluation results...
+2023-04-29 22:57:28.728 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:303 - DONE (t=1.30s).
+2023-04-29 22:57:28.880 | INFO     | yolox.core.trainer:evaluate_and_save_model:361 -
+Average forward time: 2.14 ms, Average NMS time: 1.06 ms, Average inference time: 3.20 ms
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.510
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.738
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.571
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.188
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.379
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.590
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.427
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.624
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.637
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.318
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.527
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.707
+per class AP:
+| class       | AP     | class       | AP     | class   | AP     |
+|:------------|:-------|:------------|:-------|:--------|:-------|
+| aeroplane   | 55.395 | bicycle     | 54.264 | bird    | 46.996 |
+| boat        | 35.784 | bottle      | 39.854 | bus     | 66.874 |
+| car         | 56.137 | cat         | 59.386 | chair   | 39.426 |
+| cow         | 50.621 | diningtable | 42.346 | dog     | 57.777 |
+| horse       | 57.319 | motorbike   | 56.889 | person  | 56.565 |
+| pottedplant | 30.769 | sheep       | 54.305 | sofa    | 46.068 |
+| train       | 61.071 | tvmonitor   | 52.710 |         |        |
+per class AR:
+| class       | AR     | class       | AR     | class   | AR     |
+|:------------|:-------|:------------|:-------|:--------|:-------|
+| aeroplane   | 63.657 | bicycle     | 63.158 | bird    | 58.188 |
+| boat        | 51.487 | bottle      | 53.424 | bus     | 72.406 |
+| car         | 65.516 | cat         | 72.071 | chair   | 58.399 |
+| cow         | 65.937 | diningtable | 59.412 | dog     | 70.220 |
+| horse       | 66.542 | motorbike   | 67.420 | person  | 66.828 |
+| pottedplant | 51.107 | sheep       | 66.206 | sofa    | 67.442 |
+| train       | 70.517 | tvmonitor   | 64.541 |         |        |
+
+2023-04-29 22:57:28.881 | INFO     | yolox.core.trainer:save_ckpt:371 - Save weights to ./YOLOX_outputs/yolox_s_voc2012
+2023-04-29 22:57:29.092 | INFO     | yolox.core.trainer:save_ckpt:371 - Save weights to ./YOLOX_outputs/yolox_s_voc2012
+2023-04-29 22:57:29.259 | INFO     | yolox.core.trainer:before_epoch:216 - ---> start train epoch13
+2023-04-29 22:57:33.789 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 13/16, iter: 20/239, gpu mem: 9044Mb, mem: 20.0Gb, iter_time: 0.226s, data_time: 0.003s, total_loss: 4.5, iou_loss: 1.3, l1_loss: 0.7, conf_loss: 1.6, cls_loss: 0.9, lr: 0.000188, size: 672, ETA: 0:03:03
+2023-04-29 22:57:38.408 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 13/16, iter: 40/239, gpu mem: 9044Mb, mem: 20.0Gb, iter_time: 0.226s, data_time: 0.003s, total_loss: 3.0, iou_loss: 1.0, l1_loss: 0.5, conf_loss: 1.1, cls_loss: 0.4, lr: 0.000188, size: 672, ETA: 0:03:00
+2023-04-29 22:57:42.818 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 13/16, iter: 60/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.220s, data_time: 0.004s, total_loss: 3.4, iou_loss: 1.2, l1_loss: 0.6, conf_loss: 1.2, cls_loss: 0.4, lr: 0.000188, size: 544, ETA: 0:02:56
+2023-04-29 22:57:47.314 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 13/16, iter: 80/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.224s, data_time: 0.003s, total_loss: 3.9, iou_loss: 1.3, l1_loss: 0.7, conf_loss: 1.4, cls_loss: 0.5, lr: 0.000188, size: 768, ETA: 0:02:52
+2023-04-29 22:57:51.526 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 13/16, iter: 100/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.210s, data_time: 0.004s, total_loss: 3.6, iou_loss: 1.2, l1_loss: 0.5, conf_loss: 1.3, cls_loss: 0.6, lr: 0.000188, size: 512, ETA: 0:02:48
+2023-04-29 22:57:55.574 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 13/16, iter: 120/239, gpu mem: 9044Mb, mem: 20.0Gb, iter_time: 0.201s, data_time: 0.004s, total_loss: 3.2, iou_loss: 1.0, l1_loss: 0.5, conf_loss: 1.2, cls_loss: 0.5, lr: 0.000188, size: 608, ETA: 0:02:44
+2023-04-29 22:57:59.794 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 13/16, iter: 140/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.210s, data_time: 0.003s, total_loss: 3.1, iou_loss: 1.1, l1_loss: 0.5, conf_loss: 1.1, cls_loss: 0.4, lr: 0.000188, size: 608, ETA: 0:02:40
+2023-04-29 22:58:04.155 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 13/16, iter: 160/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.216s, data_time: 0.003s, total_loss: 3.5, iou_loss: 1.1, l1_loss: 0.5, conf_loss: 1.4, cls_loss: 0.6, lr: 0.000188, size: 704, ETA: 0:02:37
+2023-04-29 22:58:08.359 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 13/16, iter: 180/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.207s, data_time: 0.003s, total_loss: 3.6, iou_loss: 1.4, l1_loss: 0.6, conf_loss: 1.1, cls_loss: 0.6, lr: 0.000188, size: 608, ETA: 0:02:33
+2023-04-29 22:58:12.812 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 13/16, iter: 200/239, gpu mem: 9044Mb, mem: 20.0Gb, iter_time: 0.222s, data_time: 0.003s, total_loss: 5.1, iou_loss: 1.6, l1_loss: 0.9, conf_loss: 1.8, cls_loss: 0.7, lr: 0.000188, size: 800, ETA: 0:02:29
+2023-04-29 22:58:17.209 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 13/16, iter: 220/239, gpu mem: 9044Mb, mem: 20.0Gb, iter_time: 0.219s, data_time: 0.003s, total_loss: 2.8, iou_loss: 1.1, l1_loss: 0.4, conf_loss: 1.0, cls_loss: 0.4, lr: 0.000188, size: 672, ETA: 0:02:25
+2023-04-29 22:58:21.828 | INFO     | yolox.core.trainer:save_ckpt:371 - Save weights to ./YOLOX_outputs/yolox_s_voc2012
+2023-04-29 22:58:43.601 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:259 - Evaluate in main process...
+2023-04-29 22:58:44.207 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:292 - Loading and preparing results...
+2023-04-29 22:58:44.815 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:292 - DONE (t=0.61s)
+2023-04-29 22:58:44.816 | INFO     | pycocotools.coco:loadRes:366 - creating index...
+2023-04-29 22:58:44.839 | INFO     | pycocotools.coco:loadRes:366 - index created!
+2023-04-29 22:58:44.840 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:302 - Running per image evaluation...
+2023-04-29 22:58:44.841 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:302 - Evaluate annotation type *bbox*
+2023-04-29 22:58:50.288 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:302 - DONE (t=5.45s).
+2023-04-29 22:58:50.289 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:303 - Accumulating evaluation results...
+2023-04-29 22:58:51.545 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:303 - DONE (t=1.26s).
+2023-04-29 22:58:51.674 | INFO     | yolox.core.trainer:evaluate_and_save_model:361 -
+Average forward time: 2.09 ms, Average NMS time: 1.00 ms, Average inference time: 3.10 ms
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.512
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.736
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.571
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.180
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.382
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.589
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.428
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.621
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.633
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.303
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.524
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.701
+per class AP:
+| class       | AP     | class       | AP     | class   | AP     |
+|:------------|:-------|:------------|:-------|:--------|:-------|
+| aeroplane   | 55.352 | bicycle     | 53.882 | bird    | 47.293 |
+| boat        | 35.065 | bottle      | 38.113 | bus     | 66.506 |
+| car         | 56.037 | cat         | 60.270 | chair   | 39.182 |
+| cow         | 51.144 | diningtable | 43.290 | dog     | 58.697 |
+| horse       | 59.196 | motorbike   | 57.228 | person  | 57.001 |
+| pottedplant | 31.109 | sheep       | 54.252 | sofa    | 46.867 |
+| train       | 61.165 | tvmonitor   | 51.529 |         |        |
+per class AR:
+| class       | AR     | class       | AR     | class   | AR     |
+|:------------|:-------|:------------|:-------|:--------|:-------|
+| aeroplane   | 63.409 | bicycle     | 62.974 | bird    | 57.917 |
+| boat        | 50.244 | bottle      | 50.805 | bus     | 71.719 |
+| car         | 65.558 | cat         | 70.955 | chair   | 57.723 |
+| cow         | 63.112 | diningtable | 59.626 | dog     | 73.299 |
+| horse       | 67.694 | motorbike   | 67.048 | person  | 67.225 |
+| pottedplant | 51.218 | sheep       | 63.773 | sofa    | 68.010 |
+| train       | 70.122 | tvmonitor   | 62.657 |         |        |
+
+2023-04-29 22:58:51.676 | INFO     | yolox.core.trainer:save_ckpt:371 - Save weights to ./YOLOX_outputs/yolox_s_voc2012
+2023-04-29 22:58:51.874 | INFO     | yolox.core.trainer:save_ckpt:371 - Save weights to ./YOLOX_outputs/yolox_s_voc2012
+2023-04-29 22:58:52.006 | INFO     | yolox.core.trainer:before_epoch:216 - ---> start train epoch14
+2023-04-29 22:58:56.626 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 14/16, iter: 20/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.228s, data_time: 0.003s, total_loss: 4.1, iou_loss: 1.5, l1_loss: 0.6, conf_loss: 1.5, cls_loss: 0.5, lr: 0.000188, size: 800, ETA: 0:02:18
+2023-04-29 22:59:01.265 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 14/16, iter: 40/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.231s, data_time: 0.003s, total_loss: 3.6, iou_loss: 1.2, l1_loss: 0.5, conf_loss: 1.4, cls_loss: 0.5, lr: 0.000188, size: 704, ETA: 0:02:14
+2023-04-29 22:59:05.112 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 14/16, iter: 60/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.191s, data_time: 0.002s, total_loss: 2.9, iou_loss: 0.9, l1_loss: 0.4, conf_loss: 1.2, cls_loss: 0.4, lr: 0.000188, size: 480, ETA: 0:02:10
+2023-04-29 22:59:09.328 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 14/16, iter: 80/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.208s, data_time: 0.004s, total_loss: 4.6, iou_loss: 1.7, l1_loss: 0.7, conf_loss: 1.7, cls_loss: 0.6, lr: 0.000188, size: 480, ETA: 0:02:06
+2023-04-29 22:59:13.645 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 14/16, iter: 100/239, gpu mem: 9044Mb, mem: 20.0Gb, iter_time: 0.213s, data_time: 0.003s, total_loss: 3.6, iou_loss: 1.4, l1_loss: 0.5, conf_loss: 1.2, cls_loss: 0.5, lr: 0.000188, size: 480, ETA: 0:02:02
+2023-04-29 22:59:18.401 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 14/16, iter: 120/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.237s, data_time: 0.004s, total_loss: 3.5, iou_loss: 1.4, l1_loss: 0.5, conf_loss: 1.1, cls_loss: 0.5, lr: 0.000188, size: 768, ETA: 0:01:58
+2023-04-29 22:59:23.102 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 14/16, iter: 140/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.234s, data_time: 0.012s, total_loss: 4.0, iou_loss: 1.4, l1_loss: 0.6, conf_loss: 1.3, cls_loss: 0.7, lr: 0.000188, size: 544, ETA: 0:01:54
+2023-04-29 22:59:27.141 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 14/16, iter: 160/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.200s, data_time: 0.003s, total_loss: 3.7, iou_loss: 1.3, l1_loss: 0.6, conf_loss: 1.2, cls_loss: 0.6, lr: 0.000188, size: 640, ETA: 0:01:50
+2023-04-29 22:59:31.530 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 14/16, iter: 180/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.217s, data_time: 0.004s, total_loss: 4.3, iou_loss: 1.2, l1_loss: 0.6, conf_loss: 1.9, cls_loss: 0.6, lr: 0.000188, size: 704, ETA: 0:01:46
+2023-04-29 22:59:35.686 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 14/16, iter: 200/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.204s, data_time: 0.003s, total_loss: 3.7, iou_loss: 1.3, l1_loss: 0.6, conf_loss: 1.3, cls_loss: 0.6, lr: 0.000188, size: 640, ETA: 0:01:42
+2023-04-29 22:59:40.087 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 14/16, iter: 220/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.218s, data_time: 0.005s, total_loss: 4.6, iou_loss: 1.2, l1_loss: 0.6, conf_loss: 2.2, cls_loss: 0.5, lr: 0.000188, size: 768, ETA: 0:01:39
+2023-04-29 22:59:44.407 | INFO     | yolox.core.trainer:save_ckpt:371 - Save weights to ./YOLOX_outputs/yolox_s_voc2012
+2023-04-29 23:00:06.273 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:259 - Evaluate in main process...
+2023-04-29 23:00:06.822 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:292 - Loading and preparing results...
+2023-04-29 23:00:07.127 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:292 - DONE (t=0.30s)
+2023-04-29 23:00:07.128 | INFO     | pycocotools.coco:loadRes:366 - creating index...
+2023-04-29 23:00:07.151 | INFO     | pycocotools.coco:loadRes:366 - index created!
+2023-04-29 23:00:07.152 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:302 - Running per image evaluation...
+2023-04-29 23:00:07.152 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:302 - Evaluate annotation type *bbox*
+2023-04-29 23:00:12.330 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:302 - DONE (t=5.18s).
+2023-04-29 23:00:12.331 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:303 - Accumulating evaluation results...
+2023-04-29 23:00:13.476 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:303 - DONE (t=1.15s).
+2023-04-29 23:00:13.578 | INFO     | yolox.core.trainer:evaluate_and_save_model:361 -
+Average forward time: 2.08 ms, Average NMS time: 1.00 ms, Average inference time: 3.08 ms
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.507
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.732
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.564
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.178
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.373
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.587
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.425
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.613
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.625
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.297
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.509
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.698
+per class AP:
+| class       | AP     | class       | AP     | class   | AP     |
+|:------------|:-------|:------------|:-------|:--------|:-------|
+| aeroplane   | 55.603 | bicycle     | 53.967 | bird    | 47.945 |
+| boat        | 34.666 | bottle      | 39.118 | bus     | 65.358 |
+| car         | 55.621 | cat         | 60.886 | chair   | 38.923 |
+| cow         | 49.247 | diningtable | 42.681 | dog     | 58.107 |
+| horse       | 57.509 | motorbike   | 57.333 | person  | 56.775 |
+| pottedplant | 30.536 | sheep       | 52.234 | sofa    | 44.953 |
+| train       | 60.929 | tvmonitor   | 52.522 |         |        |
+per class AR:
+| class       | AR     | class       | AR     | class   | AR     |
+|:------------|:-------|:------------|:-------|:--------|:-------|
+| aeroplane   | 62.438 | bicycle     | 62.816 | bird    | 58.967 |
+| boat        | 49.878 | bottle      | 51.610 | bus     | 71.906 |
+| car         | 64.629 | cat         | 72.994 | chair   | 57.626 |
+| cow         | 63.256 | diningtable | 59.118 | dog     | 71.708 |
+| horse       | 65.228 | motorbike   | 66.516 | person  | 66.536 |
+| pottedplant | 51.328 | sheep       | 60.701 | sofa    | 62.093 |
+| train       | 69.149 | tvmonitor   | 62.150 |         |        |
+
+2023-04-29 23:00:13.579 | INFO     | yolox.core.trainer:save_ckpt:371 - Save weights to ./YOLOX_outputs/yolox_s_voc2012
+2023-04-29 23:00:13.718 | INFO     | yolox.core.trainer:save_ckpt:371 - Save weights to ./YOLOX_outputs/yolox_s_voc2012
+2023-04-29 23:00:13.845 | INFO     | yolox.core.trainer:before_epoch:216 - ---> start train epoch15
+2023-04-29 23:00:18.108 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 15/16, iter: 20/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.212s, data_time: 0.003s, total_loss: 3.8, iou_loss: 1.4, l1_loss: 0.6, conf_loss: 1.2, cls_loss: 0.6, lr: 0.000188, size: 704, ETA: 0:01:31
+2023-04-29 23:00:22.577 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 15/16, iter: 40/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.221s, data_time: 0.005s, total_loss: 3.6, iou_loss: 1.4, l1_loss: 0.6, conf_loss: 1.1, cls_loss: 0.5, lr: 0.000188, size: 512, ETA: 0:01:27
+2023-04-29 23:00:26.518 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 15/16, iter: 60/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.196s, data_time: 0.003s, total_loss: 4.7, iou_loss: 1.6, l1_loss: 0.8, conf_loss: 1.7, cls_loss: 0.5, lr: 0.000188, size: 544, ETA: 0:01:23
+2023-04-29 23:00:30.647 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 15/16, iter: 80/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.205s, data_time: 0.003s, total_loss: 4.1, iou_loss: 1.5, l1_loss: 0.7, conf_loss: 1.3, cls_loss: 0.6, lr: 0.000188, size: 704, ETA: 0:01:19
+2023-04-29 23:00:34.952 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 15/16, iter: 100/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.215s, data_time: 0.003s, total_loss: 3.3, iou_loss: 1.2, l1_loss: 0.6, conf_loss: 1.2, cls_loss: 0.4, lr: 0.000188, size: 576, ETA: 0:01:15
+2023-04-29 23:00:39.142 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 15/16, iter: 120/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.208s, data_time: 0.003s, total_loss: 3.2, iou_loss: 1.3, l1_loss: 0.4, conf_loss: 1.0, cls_loss: 0.5, lr: 0.000188, size: 480, ETA: 0:01:11
+2023-04-29 23:00:43.273 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 15/16, iter: 140/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.206s, data_time: 0.003s, total_loss: 4.1, iou_loss: 1.3, l1_loss: 0.6, conf_loss: 1.6, cls_loss: 0.6, lr: 0.000188, size: 768, ETA: 0:01:07
+2023-04-29 23:00:47.257 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 15/16, iter: 160/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.198s, data_time: 0.004s, total_loss: 3.2, iou_loss: 1.2, l1_loss: 0.4, conf_loss: 1.1, cls_loss: 0.5, lr: 0.000188, size: 576, ETA: 0:01:03
+2023-04-29 23:00:51.751 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 15/16, iter: 180/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.223s, data_time: 0.004s, total_loss: 4.9, iou_loss: 1.7, l1_loss: 0.9, conf_loss: 1.7, cls_loss: 0.7, lr: 0.000188, size: 768, ETA: 0:00:59
+2023-04-29 23:00:56.074 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 15/16, iter: 200/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.215s, data_time: 0.003s, total_loss: 3.9, iou_loss: 1.3, l1_loss: 0.6, conf_loss: 1.4, cls_loss: 0.6, lr: 0.000188, size: 576, ETA: 0:00:55
+2023-04-29 23:01:00.532 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 15/16, iter: 220/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.222s, data_time: 0.005s, total_loss: 3.4, iou_loss: 1.0, l1_loss: 0.5, conf_loss: 1.5, cls_loss: 0.4, lr: 0.000188, size: 736, ETA: 0:00:51
+2023-04-29 23:01:04.596 | INFO     | yolox.core.trainer:save_ckpt:371 - Save weights to ./YOLOX_outputs/yolox_s_voc2012
+2023-04-29 23:01:24.797 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:259 - Evaluate in main process...
+2023-04-29 23:01:25.373 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:292 - Loading and preparing results...
+2023-04-29 23:01:25.694 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:292 - DONE (t=0.32s)
+2023-04-29 23:01:25.695 | INFO     | pycocotools.coco:loadRes:366 - creating index...
+2023-04-29 23:01:25.718 | INFO     | pycocotools.coco:loadRes:366 - index created!
+2023-04-29 23:01:25.719 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:302 - Running per image evaluation...
+2023-04-29 23:01:25.720 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:302 - Evaluate annotation type *bbox*
+2023-04-29 23:01:31.078 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:302 - DONE (t=5.36s).
+2023-04-29 23:01:31.078 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:303 - Accumulating evaluation results...
+2023-04-29 23:01:32.244 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:303 - DONE (t=1.16s).
+2023-04-29 23:01:32.349 | INFO     | yolox.core.trainer:evaluate_and_save_model:361 -
+Average forward time: 2.06 ms, Average NMS time: 1.00 ms, Average inference time: 3.06 ms
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.516
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.741
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.575
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.174
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.379
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.598
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.429
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.624
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.636
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.304
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.523
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.707
+per class AP:
+| class       | AP     | class       | AP     | class   | AP     |
+|:------------|:-------|:------------|:-------|:--------|:-------|
+| aeroplane   | 55.362 | bicycle     | 56.587 | bird    | 47.279 |
+| boat        | 36.584 | bottle      | 38.736 | bus     | 66.586 |
+| car         | 55.972 | cat         | 61.181 | chair   | 38.749 |
+| cow         | 53.852 | diningtable | 42.730 | dog     | 56.659 |
+| horse       | 58.153 | motorbike   | 57.844 | person  | 56.992 |
+| pottedplant | 31.597 | sheep       | 55.147 | sofa    | 47.388 |
+| train       | 61.725 | tvmonitor   | 53.479 |         |        |
+per class AR:
+| class       | AR     | class       | AR     | class   | AR     |
+|:------------|:-------|:------------|:-------|:--------|:-------|
+| aeroplane   | 62.438 | bicycle     | 64.947 | bird    | 57.488 |
+| boat        | 51.731 | bottle      | 51.937 | bus     | 72.531 |
+| car         | 64.868 | cat         | 72.460 | chair   | 57.792 |
+| cow         | 67.406 | diningtable | 58.449 | dog     | 68.383 |
+| horse       | 66.783 | motorbike   | 67.473 | person  | 66.744 |
+| pottedplant | 51.550 | sheep       | 66.866 | sofa    | 68.165 |
+| train       | 70.699 | tvmonitor   | 63.116 |         |        |
+
+2023-04-29 23:01:32.350 | INFO     | yolox.core.trainer:save_ckpt:371 - Save weights to ./YOLOX_outputs/yolox_s_voc2012
+2023-04-29 23:01:32.538 | INFO     | yolox.core.trainer:save_ckpt:371 - Save weights to ./YOLOX_outputs/yolox_s_voc2012
+2023-04-29 23:01:32.662 | INFO     | yolox.core.trainer:before_epoch:216 - ---> start train epoch16
+2023-04-29 23:01:37.032 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 16/16, iter: 20/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.217s, data_time: 0.003s, total_loss: 3.7, iou_loss: 1.4, l1_loss: 0.5, conf_loss: 1.2, cls_loss: 0.5, lr: 0.000188, size: 544, ETA: 0:00:43
+2023-04-29 23:01:41.285 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 16/16, iter: 40/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.211s, data_time: 0.003s, total_loss: 3.5, iou_loss: 1.3, l1_loss: 0.6, conf_loss: 1.1, cls_loss: 0.5, lr: 0.000188, size: 768, ETA: 0:00:39
+2023-04-29 23:01:45.333 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 16/16, iter: 60/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.201s, data_time: 0.004s, total_loss: 3.5, iou_loss: 1.4, l1_loss: 0.5, conf_loss: 1.1, cls_loss: 0.5, lr: 0.000188, size: 544, ETA: 0:00:35
+2023-04-29 23:01:49.686 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 16/16, iter: 80/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.215s, data_time: 0.003s, total_loss: 3.9, iou_loss: 1.3, l1_loss: 0.6, conf_loss: 1.4, cls_loss: 0.7, lr: 0.000188, size: 576, ETA: 0:00:31
+2023-04-29 23:01:53.980 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 16/16, iter: 100/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.209s, data_time: 0.002s, total_loss: 4.1, iou_loss: 1.6, l1_loss: 0.8, conf_loss: 1.2, cls_loss: 0.5, lr: 0.000188, size: 704, ETA: 0:00:27
+2023-04-29 23:01:57.996 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 16/16, iter: 120/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.200s, data_time: 0.004s, total_loss: 2.8, iou_loss: 1.1, l1_loss: 0.5, conf_loss: 0.9, cls_loss: 0.4, lr: 0.000188, size: 768, ETA: 0:00:23
+2023-04-29 23:02:02.524 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 16/16, iter: 140/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.225s, data_time: 0.003s, total_loss: 3.3, iou_loss: 1.3, l1_loss: 0.5, conf_loss: 1.0, cls_loss: 0.5, lr: 0.000188, size: 544, ETA: 0:00:19
+2023-04-29 23:02:06.940 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 16/16, iter: 160/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.220s, data_time: 0.002s, total_loss: 3.3, iou_loss: 1.2, l1_loss: 0.5, conf_loss: 1.1, cls_loss: 0.5, lr: 0.000188, size: 576, ETA: 0:00:15
+2023-04-29 23:02:11.182 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 16/16, iter: 180/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.212s, data_time: 0.003s, total_loss: 4.4, iou_loss: 1.4, l1_loss: 0.7, conf_loss: 1.4, cls_loss: 0.8, lr: 0.000188, size: 672, ETA: 0:00:11
+2023-04-29 23:02:15.745 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 16/16, iter: 200/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.226s, data_time: 0.003s, total_loss: 3.5, iou_loss: 1.2, l1_loss: 0.6, conf_loss: 1.1, cls_loss: 0.6, lr: 0.000188, size: 544, ETA: 0:00:07
+2023-04-29 23:02:19.812 | INFO     | yolox.core.trainer:after_iter:268 - epoch: 16/16, iter: 220/239, gpu mem: 9044Mb, mem: 20.1Gb, iter_time: 0.203s, data_time: 0.004s, total_loss: 3.8, iou_loss: 1.3, l1_loss: 0.6, conf_loss: 1.4, cls_loss: 0.5, lr: 0.000188, size: 640, ETA: 0:00:03
+2023-04-29 23:02:24.194 | INFO     | yolox.core.trainer:save_ckpt:371 - Save weights to ./YOLOX_outputs/yolox_s_voc2012
+2023-04-29 23:02:46.609 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:259 - Evaluate in main process...
+2023-04-29 23:02:47.173 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:292 - Loading and preparing results...
+2023-04-29 23:02:47.496 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:292 - DONE (t=0.32s)
+2023-04-29 23:02:47.496 | INFO     | pycocotools.coco:loadRes:366 - creating index...
+2023-04-29 23:02:47.520 | INFO     | pycocotools.coco:loadRes:366 - index created!
+2023-04-29 23:02:47.521 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:302 - Running per image evaluation...
+2023-04-29 23:02:47.521 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:302 - Evaluate annotation type *bbox*
+2023-04-29 23:02:52.919 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:302 - DONE (t=5.40s).
+2023-04-29 23:02:52.919 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:303 - Accumulating evaluation results...
+2023-04-29 23:02:54.101 | INFO     | yolox.evaluators.coco_evaluator:evaluate_prediction:303 - DONE (t=1.18s).
+2023-04-29 23:02:54.236 | INFO     | yolox.core.trainer:evaluate_and_save_model:361 -
+Average forward time: 2.26 ms, Average NMS time: 1.10 ms, Average inference time: 3.36 ms
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.516
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.740
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.575
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.179
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.375
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.600
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.429
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.624
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.635
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.295
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.516
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.710
+per class AP:
+| class       | AP     | class       | AP     | class   | AP     |
+|:------------|:-------|:------------|:-------|:--------|:-------|
+| aeroplane   | 56.128 | bicycle     | 55.917 | bird    | 47.599 |
+| boat        | 35.667 | bottle      | 38.333 | bus     | 65.727 |
+| car         | 56.102 | cat         | 61.648 | chair   | 39.301 |
+| cow         | 53.728 | diningtable | 43.237 | dog     | 57.042 |
+| horse       | 59.480 | motorbike   | 57.566 | person  | 56.392 |
+| pottedplant | 31.734 | sheep       | 55.327 | sofa    | 46.925 |
+| train       | 61.269 | tvmonitor   | 52.743 |         |        |
+per class AR:
+| class       | AR     | class       | AR     | class   | AR     |
+|:------------|:-------|:------------|:-------|:--------|:-------|
+| aeroplane   | 63.306 | bicycle     | 64.579 | bird    | 58.029 |
+| boat        | 50.876 | bottle      | 50.341 | bus     | 71.062 |
+| car         | 64.766 | cat         | 72.929 | chair   | 56.798 |
+| cow         | 66.571 | diningtable | 58.850 | dog     | 70.039 |
+| horse       | 67.239 | motorbike   | 68.723 | person  | 66.004 |
+| pottedplant | 51.089 | sheep       | 67.258 | sofa    | 67.183 |
+| train       | 70.821 | tvmonitor   | 63.382 |         |        |
+
+2023-04-29 23:02:54.238 | INFO     | yolox.core.trainer:save_ckpt:371 - Save weights to ./YOLOX_outputs/yolox_s_voc2012
+2023-04-29 23:02:54.519 | INFO     | yolox.core.trainer:save_ckpt:371 - Save weights to ./YOLOX_outputs/yolox_s_voc2012
+2023-04-29 23:02:54.754 | INFO     | yolox.core.trainer:after_train:208 - Training of experiment is done and the best AP is 51.63

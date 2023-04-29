@@ -40,6 +40,7 @@ class COCODataset(CacheDataset):
         self,
         data_dir=None,
         json_file="instances_train2017.json",
+        ann_folder="annotations",
         name="train2017",
         img_size=(416, 416),
         preproc=None,
@@ -59,8 +60,9 @@ class COCODataset(CacheDataset):
             data_dir = os.path.join(get_yolox_datadir(), "COCO")
         self.data_dir = data_dir
         self.json_file = json_file
+        self.ann_folder = ann_folder
 
-        self.coco = COCO(os.path.join(self.data_dir, "annotations", self.json_file))
+        self.coco = COCO(os.path.join(self.data_dir, self.ann_folder, self.json_file))
         remove_useless_info(self.coco)
         self.ids = self.coco.getImgIds()
         self.num_imgs = len(self.ids)

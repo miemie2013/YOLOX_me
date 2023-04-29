@@ -266,7 +266,7 @@ class Trainer:
             mem_str = "gpu mem: {:.0f}Mb, mem: {:.1f}Gb".format(gpu_mem_usage(), mem_usage())
 
             logger.info(
-                "{}, {}, {}, {}, lr: {:.3e}".format(
+                "{}, {}, {}, {}, lr: {:.6f}".format(
                     progress_str,
                     mem_str,
                     time_str,

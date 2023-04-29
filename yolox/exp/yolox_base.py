@@ -39,6 +39,7 @@ class Exp(BaseExp):
         # self.random_size = (14, 26)
         # dir of dataset images, if data_dir is None, this project will use `datasets` dir
         self.data_dir = None
+        self.ann_folder = "annotations"
         # name of annotation file for training
         self.train_ann = "instances_train2017.json"
         # name of annotation file for evaluation
@@ -144,6 +145,7 @@ class Exp(BaseExp):
         return COCODataset(
             data_dir=self.data_dir,
             json_file=self.train_ann,
+            ann_folder=self.ann_folder,
             name=self.train_image_folder,
             img_size=self.input_size,
             preproc=TrainTransform(
@@ -307,6 +309,7 @@ class Exp(BaseExp):
         return COCODataset(
             data_dir=self.data_dir,
             json_file=self.val_ann if not testdev else self.test_ann,
+            ann_folder=self.ann_folder,
             name=self.val_image_folder if not testdev else "test2017",
             img_size=self.test_size,
             preproc=ValTransform(legacy=legacy),
