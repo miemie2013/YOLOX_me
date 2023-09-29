@@ -165,49 +165,49 @@ class TrainTransform:
         self.hsv_prob = hsv_prob
 
     def __call__(self, image, targets, input_dim):
+        # im_size_min = np.min(input_dim[0:2])
+        # im_size_max = np.max(input_dim[0:2])
+        # assert im_size_max == 640
+        # assert im_size_min == 640
+        # im_shape = image.shape
+        # assert np.max(im_shape) == 640
+
+        eps = 0.00001
+        if len(targets) == 0:
+            targets = np.zeros((self.max_labels, 5), dtype=np.float32)
+            image, r = preproc(image, input_dim)
+            assert abs(r - 1.0) < eps
+            return image, targets
         boxes = targets[:, :4].copy()
         labels = targets[:, 4].copy()
-        if len(boxes) == 0:
-            targets = np.zeros((self.max_labels, 5), dtype=np.float32)
-            image, r_o = preproc(image, input_dim)
-            return image, targets
 
-        image_o = image.copy()
-        targets_o = targets.copy()
-        height_o, width_o, _ = image_o.shape
-        boxes_o = targets_o[:, :4]
-        labels_o = targets_o[:, 4]
-        # bbox_o: [xyxy] to [c_x,c_y,w,h]
-        boxes_o = xyxy2cxcywh(boxes_o)
-
-        if random.random() < self.hsv_prob:
-            augment_hsv(image)
-        image_t, boxes = _mirror(image, boxes, self.flip_prob)
-        height, width, _ = image_t.shape
-        image_t, r_ = preproc(image_t, input_dim)
+        # 过滤 gt
         # boxes [xyxy] 2 [cx,cy,w,h]
+        boxes_cxcywh = xyxy2cxcywh(np.copy(boxes))
+        mask_b = np.minimum(boxes_cxcywh[:, 2], boxes_cxcywh[:, 3]) > 1   # [G, ]   w、h > 1 的gt处为True
+        valid_gt_num = np.sum(mask_b)  # w、h > 1 的gt数量
+
+        if valid_gt_num > 0:
+            # 如果w、h > 1 的gt数量 >0, 过滤gt, 而且做数据增强
+            # 如果w、h > 1 的gt数量==0, 不过滤gt, 而且不做数据增强
+            boxes = boxes[mask_b]
+            labels = labels[mask_b]
+            if random.random() < self.hsv_prob:
+                augment_hsv(image)
+            image, boxes_o = _mirror(image, boxes, self.flip_prob)
+
+        image, r = preproc(image, input_dim)
+        assert abs(r - 1.0) < eps
         boxes = xyxy2cxcywh(boxes)
-        boxes *= r_
 
-        mask_b = np.minimum(boxes[:, 2], boxes[:, 3]) > 1
-        boxes_t = boxes[mask_b]
-        labels_t = labels[mask_b]
-
-        if len(boxes_t) == 0:
-            image_t, r_o = preproc(image_o, input_dim)
-            boxes_o *= r_o
-            boxes_t = boxes_o
-            labels_t = labels_o
-
-        labels_t = np.expand_dims(labels_t, 1)
-
-        targets_t = np.hstack((labels_t, boxes_t))
+        labels = np.expand_dims(labels, 1)
+        targets_t = np.hstack((labels, boxes))
         padded_labels = np.zeros((self.max_labels, 5))
         padded_labels[range(len(targets_t))[: self.max_labels]] = targets_t[
             : self.max_labels
         ]
         padded_labels = np.ascontiguousarray(padded_labels, dtype=np.float32)
-        return image_t, padded_labels
+        return image, padded_labels
 
 
 class ValTransform:

@@ -48,9 +48,14 @@ nohup python tools/train.py -f exps/default/yolox_tiny_coco_baseline.py -d 2 -b 
 export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 nohup python tools/train.py -f exps/default/yolox_s.py -d 8 -b 256 --fp16     > yolox_s.log 2>&1 &
 
+(使用8卡4090，服务器完全空闲时，每个epoch花费 253 s)
+
 2023.09.29   4卡, 每卡批大小32
 export CUDA_VISIBLE_DEVICES=0,1,2,3
 nohup python tools/train.py -f exps/default/yolox_s.py -d 4 -b 128 --fp16     > yolox_s.log 2>&1 &
+
+(使用4卡4090，服务器完全空闲时，每个epoch花费 s)
+
 
 
 
@@ -78,17 +83,10 @@ python tools/train.py -f exps/default/yolox_s_voc2012.py -d 1 -b 24 -c yolox_s.p
 
 
 1机2卡训练：(发现一个隐藏知识点：获得损失（训练）、推理 都要放在模型的forward()中进行，否则DDP会计算错误结果。)
-export CUDA_VISIBLE_DEVICES=0,1
-nohup python tools/train.py -f exps/default/yolox_s_voc2012.py -d 2 -b 24 -c yolox_s.pth     > yolox_s.log 2>&1 &
+export CUDA_VISIBLE_DEVICES=8,9
+nohup python tools/train.py -f exps/default/yolox_s_voc2012.py -d 2 -b 32 -c yolox_s.pth --fp16     > yolox_s_voc2012.log 2>&1 &
 
 
 实测 yolox_s 的AP最高可以到达（日志见 train_ppyolo_in_voc2012/yolox_s_voc2012.txt ）
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.516
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.741
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.575
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.174
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.379
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.598
-
 
 

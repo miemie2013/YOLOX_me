@@ -29,8 +29,9 @@ class Exp(MyExp):
         self.warmup_epochs = 1
         self.max_epoch = 16
         self.warmup_lr = 0
-        self.basic_lr_per_img = 0.01 / 64.0
+        self.basic_lr_per_img = 0.001 / 64.0
         self.no_aug_epochs = 5
         self.min_lr_ratio = 0.05
         self.print_interval = 20
-        self.eval_interval = 2
+        self.eval_interval = 4
+        self.data_num_workers = 4
