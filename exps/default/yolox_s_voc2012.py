@@ -34,4 +34,5 @@ class Exp(MyExp):
         self.min_lr_ratio = 0.05
         self.print_interval = 20
         self.eval_interval = 4
+        self.mosaic_prob = 1.0
         self.data_num_workers = 4
