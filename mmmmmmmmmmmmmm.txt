@@ -43,6 +43,15 @@ export CUDA_VISIBLE_DEVICES=7,8
 nohup python tools/train.py -f exps/default/yolox_tiny_coco_baseline.py -d 2 -b 64 --fp16     > yolox_tiny_coco_baseline.log 2>&1 &
 
 
+----------------------- 复现COCO -----------------------
+2023.09.29   8卡, 每卡批大小32
+export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+nohup python tools/train.py -f exps/default/yolox_s.py -d 8 -b 256 --fp16     > yolox_s.log 2>&1 &
+
+2023.09.29   4卡, 每卡批大小32
+export CUDA_VISIBLE_DEVICES=0,1,2,3
+nohup python tools/train.py -f exps/default/yolox_s.py -d 4 -b 128 --fp16     > yolox_s.log 2>&1 &
+
 
 
 ----------------------- 评估 -----------------------

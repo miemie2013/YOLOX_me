@@ -83,7 +83,11 @@ class Trainer:
     def train_in_epoch(self):
         for self.epoch in range(self.start_epoch, self.max_epoch):
             self.before_epoch()
+            train_start = time.time()
             self.train_in_iter()
+            if self.rank == 0:
+                cost = time.time() - train_start
+                logger.info('Train epoch %d cost time: %.1f s.' % (self.epoch + 1, cost))
             self.after_epoch()
 
     def train_in_iter(self):
