@@ -4,10 +4,10 @@
 
 export CUDA_VISIBLE_DEVICES=0
 
-python demo2.py image -f exps/default/yolox_x.py -c yolox_x.pth --path /data/Places365Dataset/first --fuse --conf 0.5 --tsize 640 --save_result --device gpu --cid_black_list 0 1 2 3 7 15 16
+python demo2.py image -f exps/default/yolox_x.py -c yolox_x.pth --path /data/Places365Dataset/train_1 --fuse --conf 0.01 --tsize 640 --save_result --device gpu --cid_black_list 0 1 2 3 7 15 16
 
 
-nohup python demo2.py image -f exps/default/yolox_x.py -c yolox_x.pth --path /data/Places365Dataset/first --fuse --conf 0.5 --tsize 640 --save_result --device gpu --cid_black_list 0 1 2 3 7 15 16     > find_bg.log 2>&1 &
+nohup python demo2.py image -f exps/default/yolox_x.py -c yolox_x.pth --path /data/Places365Dataset/train_1 --fuse --conf 0.01 --tsize 640 --save_result --device gpu --cid_black_list 0 1 2 3 7 15 16     > find_bg.log 2>&1 &
 
 
 

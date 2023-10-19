@@ -174,9 +174,9 @@ class Predictor(object):
     def visual(self, output, img_info, cls_conf=0.35, cid_black_list=[]):
         # ratio = img_info["ratio"]
         img = img_info["raw_img"]
-        img_as_bg = True
+        max_score = 0.
         if output is None:
-            return img, img_as_bg
+            return img, max_score
         output = output.cpu()
 
         # bboxes = output[:, 0:4]
@@ -185,14 +185,15 @@ class Predictor(object):
         # bboxes /= ratio
 
         # cls = output[:, 6]
-        # scores = output[:, 4] * output[:, 5]
+        scores = output[:, 4] * output[:, 5]
         # vis_res = vis(img, bboxes, scores, cls, cls_conf, self.cls_names)
         cls = output[:, 6].to(torch.int64).detach().numpy().tolist()
-        for clsid in cls:
+        scores = scores.to(torch.float32).detach().numpy().tolist()
+        for i, clsid in enumerate(cls):
+            score = scores[i]
             if clsid in cid_black_list:
-                img_as_bg = False
-                break
-        return img, img_as_bg
+                max_score = max(max_score, score)
+        return img, max_score
 
 
 def image_demo(predictor, vis_folder, path, current_time, save_result, cid_black_list):
@@ -208,8 +209,8 @@ def image_demo(predictor, vis_folder, path, current_time, save_result, cid_black
     for image_name in files:
         i += 1
         outputs, img_info = predictor.inference(image_name)
-        result_image, img_as_bg = predictor.visual(outputs[0], img_info, predictor.confthre, cid_black_list)
-        if save_result and img_as_bg:
+        result_image, max_score = predictor.visual(outputs[0], img_info, predictor.confthre, cid_black_list)
+        if save_result:
             save_folder = os.path.join(
                 vis_folder, time.strftime("%Y_%m_%d_%H_%M_%S", current_time)
             )
@@ -223,15 +224,15 @@ def image_demo(predictor, vis_folder, path, current_time, save_result, cid_black
             height = img_info["height"]
             width = img_info["width"]
             if len(ss) == 2:
-                content = '%s %d %d\n' % (ss[-1], height, width)
+                content = '%s %d %d %.3f\n' % (ss[-1], height, width, max_score)
             elif len(ss) == 3:
-                content = '%s/%s %d %d\n' % (ss[-2], ss[-1], height, width)
+                content = '%s/%s %d %d %.3f\n' % (ss[-2], ss[-1], height, width, max_score)
             elif len(ss) == 4:
-                content = '%s/%s/%s %d %d\n' % (ss[-3], ss[-2], ss[-1], height, width)
+                content = '%s/%s/%s %d %d %.3f\n' % (ss[-3], ss[-2], ss[-1], height, width, max_score)
             elif len(ss) == 5:
-                content = '%s/%s/%s/%s %d %d\n' % (ss[-4], ss[-3], ss[-2], ss[-1], height, width)
+                content = '%s/%s/%s/%s %d %d %.3f\n' % (ss[-4], ss[-3], ss[-2], ss[-1], height, width, max_score)
             elif len(ss) == 6:
-                content = '%s/%s/%s/%s/%s %d %d\n' % (ss[-5], ss[-4], ss[-3], ss[-2], ss[-1], height, width)
+                content = '%s/%s/%s/%s/%s %d %d %.3f\n' % (ss[-5], ss[-4], ss[-3], ss[-2], ss[-1], height, width, max_score)
             else:
                 raise NotImplementedError
             with open(os.path.join(save_folder, 'bg_imgs.txt'), 'a', encoding='utf-8') as f:
